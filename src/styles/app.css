@@ -1,0 +1,19 @@
+.app-container {
+  display: flex; /* Flexbox for horizontal alignment */
+  height: 100vh; /* Full page height */
+}
+
+.sidebar-container {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #f4f4f4; /* Optional: Sidebar background color */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Sidebar shadow */
+  overflow-y: auto; /* Allow scrolling for sidebar content if needed */
+}
+
+.main-content {
+  flex: 1; /* Take up the remaining space */
+  padding: 20px; /* Add space around content */
+  overflow-y: auto; /* Allow scrolling for main content */
+  background-color: #fff; /* Optional: Background for content */
+}
+

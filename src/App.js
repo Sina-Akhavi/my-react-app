@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import { BrowserRouter } from "react-router-dom";
+// import LineChart from "./components/LineChart";
+import "./styles/app.css";
+import ImageCarousel from "./components/ImageCarousel";
+
+const images = require
+  .context("./assets/img", false, /\.webp$/)
+  .keys()
+  .map((file) => require(`./assets/img/${file.replace("./", "")}`));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="app-container">
+        <div className="sidebar-container">
+          <Sidebar />
+        </div>
+
+        <div className="main-content">
+          <Navbar/>
+
+          <ImageCarousel images={images} interval={5000} />
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
