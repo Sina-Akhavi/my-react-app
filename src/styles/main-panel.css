@@ -1,0 +1,35 @@
+.content {
+    padding: 0px 30px 30px 280px;
+    min-height: calc(100vh - 70px);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.main-panel {
+    position: relative;
+    float: right;
+    width: 100%;
+    min-height: 100vh;
+    border-top: 2px solid #e14eca;
+    background: linear-gradient(#1e1e2f, #1e1e24);
+    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
+
+.img-container {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.img-container img {
+    width: 100%;
+    max-height: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
