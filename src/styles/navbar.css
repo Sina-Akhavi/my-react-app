@@ -1,10 +1,11 @@
 /* Navbar.css */
 .navbar {
-  margin-bottom: 0px;
-  background: linear-gradient(90deg, #1a1a1a, #333333);
-  color: #fff;
-  padding: 20px 20px;
+  margin-bottom: 0;
+  background: linear-gradient(90deg, #1f1f2e, #3a3a4a); /* Dark blue-indigo gradient */
+  color: #ecf0f1; /* Light gray text for better contrast */
+  padding: 18px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
 }
 
 .navbar-container {
@@ -19,6 +20,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: 1.8rem;
   margin: 0;
+  color: #ecf0f1;
 }
 
 .navbar-menu {
@@ -31,11 +33,15 @@
 
 .navbar-menu li a {
   text-decoration: none;
-  color: #fff;
+  color: #ecf0f1;
   font-weight: 500;
-  transition: color 0.3s;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
 .navbar-menu li a:hover {
-  color: #f39c12;
+  background: #1abc9c; /* Vibrant turquoise for hover */
+  color: #ffffff;
+  transform: translateY(-2px);
 }
