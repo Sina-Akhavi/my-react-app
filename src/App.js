@@ -1,31 +1,20 @@
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import { BrowserRouter } from "react-router-dom";
-// import LineChart from "./components/LineChart";
-import "./styles/app.css";
-import ImageCarousel from "./components/ImageCarousel";
+import React from 'react';
+import Navbar from './components/Navbar.js';
+import Sidebar from './components/Sidebar.js';
+import Content from './components/Content.js';
+import './styles/app.css'; 
 
-const images = require
-  .context("./assets/img", false, /\.webp$/)
-  .keys()
-  .map((file) => require(`./assets/img/${file.replace("./", "")}`));
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="app-container">
-        <div className="sidebar-container">
-          <Sidebar />
+const App = () => {
+    return (
+        <div className="app">
+            <Navbar />
+            <div className="main">
+                <Sidebar />
+                <Content />
+            </div>
         </div>
-
-        <div className="main-content">
-          <Navbar/>
-
-          <ImageCarousel images={images} interval={5000} />
-        </div>
-      </div>
-    </BrowserRouter>
-  );
-}
+    );
+};
 
 export default App;
