@@ -1,39 +1,30 @@
 import React, { useState, useEffect } from "react";
-import "../styles/carousel.css";
+import "../styles/images-carousel.css";
 
-const Carousel = ({ images, autoPlay = true, autoPlayTime = 3000 }) => {
+const ImageCarousel = ({ images, interval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalImages = images.length;
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalImages);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
-  };
 
   useEffect(() => {
-    if (autoPlay) {
-      const interval = setInterval(() => {
-        handleNext();
-      }, autoPlayTime);
-      return () => clearInterval(interval);
-    }
-  }, [currentIndex, autoPlay, autoPlayTime]);
+    const timer = setInterval(() => {
+      setCurrentIndex(prevIndex =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, interval);
+    return () => clearInterval(timer);
+  }, [images, interval]);
 
   return (
     <div className="carousel-container">
-      <img src={images[1]} alt={`bitcoin index`} className="carousel-image" />
-
-      {/* <button className="carousel-button prev" onClick={handlePrev}>
-        Prev
-      </button>
-      <button className="carousel-button next" onClick={handleNext}>
-        Next
-      </button> */}
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`Slide ${index}`}
+          className={`carousel-image ${index === currentIndex ? "active" : ""}`}
+        />
+      ))}
     </div>
   );
 };
 
-export default Carousel;
+export default ImageCarousel;

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/main-panel.css"; // Create a separate CSS file for styling
-import Carousel from "./ImageCarousel";
 import Navbar from "./Navbar";
+import ImageCarousel from "./ImageCarousel";
 
 const images = require
   .context("../assets/img", false, /\.webp$/)
@@ -16,7 +16,7 @@ const MainPanel = () => {
         <div className="content">
           <div className="row">
             <div className="img-container">
-              <img src={images[1]}></img>
+              <ImageCarousel interval={5000} images={images}></ImageCarousel>
             </div>
           </div>
       </div>
