@@ -8,7 +8,7 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 } from "chart.js";
 import "../styles/line-chart.css"; // Create a separate CSS file for styling
 
@@ -30,24 +30,23 @@ const LineChartCard = ({ labels, values }) => {
       {
         label: "Line Chart Data",
         data: values,
-        fill: false,
+        fill: true,
         borderColor: "#1abc9c",
-        tension: 0.1
-      }
-    ]
+      },
+    ],
   };
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
-        position: "top"
+        position: "top",
       },
       title: {
         display: true,
-        text: "Line Chart"
-      }
-    }
+        text: "Line Chart",
+      },
+    },
   };
 
   return (
@@ -56,6 +55,5 @@ const LineChartCard = ({ labels, values }) => {
     </div>
   );
 };
-
 
 export default LineChartCard;

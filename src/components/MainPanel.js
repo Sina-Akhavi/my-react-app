@@ -10,8 +10,8 @@ const images = require
   .map((file) => require(`../assets/img/${file.replace("./", "")}`));
 
 
-const sampleLabels = ["January", "February", "March", "April", "May", "June"];
-const sampleValues = [65, 59, 80, 81, 56, 55];  
+const sampleLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const sampleValues = [65, 59, 80, 81, 56, 55, 40, 70, 90, 100, 110, 120];  
   
 const MainPanel = () => {
   return (
@@ -20,13 +20,8 @@ const MainPanel = () => {
         <Navbar />
         <div className="content">
           <div className="row">
-            
-            <div className="img-container">
-              <ImageCarousel interval={5000} images={images}></ImageCarousel>
-            </div>
+            <LineChartCard labels={sampleLabels} values={sampleValues}></LineChartCard>
           </div>
-          
-          <p>Hi</p>
       </div>
 
       </div>

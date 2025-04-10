@@ -4,15 +4,16 @@ import '../styles/navbar.css';
 
 const Navbar = () => {
     return (
-        <nav className="navbar">
-            <div className="navbar-container">
-                <h1 className="navbar-title">bitcoin soothsayer</h1>
-                <ul className="navbar-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
+        <nav className="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+            <div className="container-fluid">
+                <div className='collapse navbar-collapse ' id='navigation'>
+                    <ul className="navbar-nav ml-auto">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>            
         </nav>
     );
 };

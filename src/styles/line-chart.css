@@ -1,7 +1,24 @@
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.card-chart {
+    overflow: hidden;
+}
+
 .card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin: 20px 0;
+    background: #dfc545;
+    border: 0;
+    width: 100%;
+    box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(34, 42, 66, 0.05);
+    border-radius: 0.2857rem;
 }

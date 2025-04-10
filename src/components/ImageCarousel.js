@@ -15,14 +15,11 @@ const ImageCarousel = ({ images, interval = 5000 }) => {
 
   return (
     <div className="carousel-container">
-      {images.map((image, index) => (
-        <img
-          key={index}
-          src={image}
-          alt={`Slide ${index}`}
-          className={`carousel-image ${index === currentIndex ? "active" : ""}`}
-        />
-      ))}
+      <img
+        src={images[0]}
+        alt={`Slide image`}
+        className={`carousel-image active`}
+      />
     </div>
   );
 };

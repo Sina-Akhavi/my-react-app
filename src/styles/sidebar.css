@@ -1,6 +1,6 @@
-/* Sidebar.css */
 .sidebar {
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Modern gradient background */
+  background: #ba54f5;
+  background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
   height: calc(100vh - 90px);
   width: 230px;
   position: fixed;
@@ -10,40 +10,18 @@
   background-size: cover;
   background-position: center center;
   display: block;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Refined box-shadow */
+  box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
   margin-top: 80px;
   margin-left: 20px;
-  border-radius: 8px; /* Increased border-radius for a smoother look */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+  transition: 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 
-.sidebar:hover {
-  transform: translateX(5px); /* Slight movement on hover */
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 20px; /* Add padding for inner spacing */
-  margin: 0;
-}
-
-.sidebar-menu li {
-  margin-bottom: 20px;
-}
-
-.sidebar-menu li a {
-  text-decoration: none;
-  font-size: 1.1rem;
-  color: #ecf0f1;
-  display: block;
-  padding: 10px 15px;
-  background-color: rgba(52, 73, 94, 0.8); /* Semi-transparent background */
-  border-radius: 4px;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.sidebar-menu li a:hover {
-  background-color: #1abc9c; /* Brighter color on hover */
-  transform: scale(1.05);
+.sidebar-wrapper {
+  width: 100%;
+  min-height: 100%;
+  max-height: calc(100vh - 705px);
+  z-index: 4;
+  position: relative;
+  overflow: auto;
 }
