@@ -47,11 +47,25 @@ const LineChartCard = ({ labels, values }) => {
         text: "Line Chart",
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          stepSize: 5,
+        },
+      },
+    },
   };
 
   return (
     <div className="card">
-      <Line data={data} options={options} />
+      <div className="card-header">
+        <div className="row">
+          <div className="card-header">
+            <h1 className="card-title">Bitcoin Price</h1>
+          </div>
+        </div>
+        <Line className="graph-style" data={data} options={options}/>
+      </div>
     </div>
   );
 };

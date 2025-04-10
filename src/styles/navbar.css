@@ -3,10 +3,9 @@
   margin-bottom: 0;
   
   padding: 10px 30px 10px 15px;
-  width: 100%;
+  width: 99%;
   z-index: 1050;
-  background: #1a1e34;
-
+  background: #1a177c; /* Light gray background */
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -15,14 +14,11 @@
   padding: 0.625rem 0.9375rem;
 }
 
-.navbar.navbar-transparent {
-  background: transparent !important;
-}
 
 .navbar.navbar-absolute {
   position: absolute;
   z-index: 1050;
-}
+}  /* very important for the position */
 
 @media (min-width: 992px) {
   .navbar-expand-lg {
@@ -37,28 +33,14 @@
   }
 }
 
-.navbar > .container, .navbar > .container-fluid {
-  display: flex
-;
+.navbar > .container-fluid {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-
-.navbar-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.8rem;
-  margin: 0;
-  color: #ecf0f1;
-}
 }
 
-@media (min-width: 992px) {
-  .navbar-expand-lg > .container, .navbar-expand-lg > .container-fluid {
-      flex-wrap: nowrap;
-  }
-}
-
-.navbar > .container, .navbar > .container-fluid {
+.navbar > .navbar > .container-fluid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -67,7 +49,7 @@
 }
 
 .container-fluid {
-  width: 100%;
+  width: 99%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -103,16 +85,8 @@
   }
 }
 
-.ml-auto, .mx-auto {
+.ml-auto {
   margin-left: auto !important;
-}
-
-.navbar-nav {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
 }
 
 ul {
@@ -126,11 +100,42 @@ ul {
   unicode-bidi: isolate;
 }
 
-.navbar-nav li {
-  padding: 0 10px;
+.navbar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
 
-.input-group, .form-group {
-  margin-bottom: 10px;
-  position: relative;
+
+.nav-link:hover {
+  color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.navbar-nav li:first-child {
+  margin-left: 0; /* Remove left margin for the first item */
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  color: #f8f9fa; /* Light text color (good for dark backgrounds) */
+  font-weight: 600; /* Slightly bolder */
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 8px; /* More rounded corners */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smoother transitions */
+}
+
+
+.nav-link:hover {
+  background-color: #007bff; /* A prominent blue on hover */
+  color: #fff; /* White text on hover */
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Subtle shadow on hover */
 }

@@ -8,9 +8,9 @@ const Navbar = () => {
             <div className="container-fluid">
                 <div className='collapse navbar-collapse ' id='navigation'>
                     <ul className="navbar-nav ml-auto">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" className="nav-link">Home</a></li>
+                        <li><a href="#" className="nav-link">About</a></li>
+                        <li><a href="#" className="nav-link">Contact</a></li>
                     </ul>
                 </div>
             </div>            
