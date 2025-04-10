@@ -1,6 +1,4 @@
 .sidebar {
-  background: #f55454;
-  height: calc(100vh - 90px);
   width: 230px;
   position: fixed;
   top: 0;
@@ -9,11 +7,18 @@
   background-size: cover;
   background-position: center center;
   display: block;
-  box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   margin-top: 80px;
   margin-left: 20px;
   border-radius: 5px;
   transition: 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
+
+.mutabel-sidebar-styles {
+  background-color: #236e49;
+  color: #fff; /* Light text color */
+  height: 100vh; /* Full height of the viewport */
+  padding-top: 20px; /* Add some top padding */
 }
 
 .sidebar-wrapper {
@@ -24,4 +29,58 @@
   position: relative;
   overflow: auto;
   padding: 10px 0px;
+  padding: 20px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  margin-bottom: 10px; /* Add some vertical spacing */
+}
+
+.a-item {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #f0f0f0;
+  border-radius: 8px;
+  margin: 5px 10px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background-color: transparent;
+  border-left: 4px solid transparent;
+}
+
+.a-item:hover {
+  width: 63%;
+  background: linear-gradient(135deg, #754c78, #75a64d);
+  color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateX(5px);
+  border-left-color: #fff;
+}
+
+.a-item.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border-left-color: #fff;
+}
+
+
+/* Optional: Add a header to the sidebar */
+.sidebar-header {
+  padding: 20px 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: bold;
 }

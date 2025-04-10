@@ -4,21 +4,23 @@ import "../styles/sidebar.css";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebar mutabel-sidebar-styles">
       <div className="sidebar-wrapper">
-        <ul>
-          <li>
-            <a href="#">Dashboard</a>
+        <ul className="sidebar-list">
+          
+          <li className="sidebar-item">
+            <a className="a-item" href="#">Dashboard</a>
           </li>
-          <li>
-            <a href="#">Reports</a>
+          <li className="sidebar-item">
+            <a className="a-item" href="#">Reports</a>
           </li>
-          <li>
-            <a href="#">Analytics</a>
+          <li className="sidebar-item">
+            <a className="a-item" href="#">Analytics</a>
           </li>
-          <li>
-            <a href="#">Settings</a>
+          <li className="sidebar-item">
+            <a className="a-item" href="#">Settings</a>
           </li>
+
         </ul>
       </div>
     </div>
