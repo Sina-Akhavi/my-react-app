@@ -25,7 +25,8 @@ const MainPanel = () => {
               <ImageCarousel interval={5000} images={images}></ImageCarousel>
             </div>
           </div>
-          <LineChartCard labels={sampleLabels} values={sampleValues}></LineChartCard>
+          
+          <p>Hi</p>
       </div>
 
       </div>
