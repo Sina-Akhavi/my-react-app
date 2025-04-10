@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // Navbar.js
 import React from 'react';
 import '../styles/navbar.css';

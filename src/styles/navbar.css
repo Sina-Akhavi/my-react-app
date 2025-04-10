@@ -89,7 +89,7 @@
   margin-left: auto !important;
 }
 
-ul {
+.navbar-navul {
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;

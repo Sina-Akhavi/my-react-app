@@ -23,4 +23,5 @@
   z-index: 4;
   position: relative;
   overflow: auto;
+  padding: 10px 0px;
 }

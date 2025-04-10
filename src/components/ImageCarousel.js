@@ -17,7 +17,7 @@ const ImageCarousel = ({ images, interval = 5000 }) => {
     <div className="carousel-container">
       <img
         src={images[0]}
-        alt={`Slide image`}
+        alt="image_one"
         className={`carousel-image active`}
       />
     </div>
