@@ -74,13 +74,30 @@
 
 /* Optional: Add a header to the sidebar */
 .sidebar-header {
-  padding: 20px 0;
-  text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  text-align: center; /* Ensure text is centered */
+  padding: 16;
+  background: #236e49;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.sidebar-header h3 {
-  margin: 0;
-  font-size: 1.5em;
-  font-weight: bold;
+.sidebar-header-info {
+  flex: 1;
+  margin: 0 12px;
 }
+
+.sidebar-header-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.sidebar-header-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
