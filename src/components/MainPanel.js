@@ -9,9 +9,7 @@ const MainPanel = () => {
   return (
     <div className="main-panel">
       <Navbar />
-      <div className="content">
-        <Outlet /> {/* Dynamic content from child routes will appear here */}
-      </div>
+        <Outlet /> {/* Put the Content Here */}
     </div>
   );
 };

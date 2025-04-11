@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'; // Outlet is used for rendering child
 function MainLayout() {
   return (
     <div className="wrapper">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <MainPanel>
         <Outlet /> 
       </MainPanel>
