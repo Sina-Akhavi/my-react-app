@@ -6,15 +6,20 @@ import './styles/app.css';
 import LoginPage from './components/LoginPage.js';
 import HomePage from './components/HomePage.js';
 import ContactPage from './components/ContactPagr.js'
+import HomePageContent from './components/HomePageContent.js'
+import MainLayout from './layout/MainLayout.js';
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<LoginPage/>} />
-                <Route path='/' element={<HomePage/>} />
-                <Route path='/contact' element={<ContactPage/>}/>
-                <Route/>
+
+                <Route path='/' element={<MainLayout/>}>
+                    <Route index element={<HomePageContent/>} />
+                    <Route path='/contact' element={<ContactPage/>}/>
+                </Route>
+                
             </Routes>
         </BrowserRouter>
 
