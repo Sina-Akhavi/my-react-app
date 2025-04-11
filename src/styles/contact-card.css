@@ -1,0 +1,40 @@
+/* src/components/Card.css */
+.contact-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden; /* To contain rounded corners of inner elements */
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-explanation {
+  color: #555;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.card-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0 0 8px 8px; /* Round only the bottom corners */
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
