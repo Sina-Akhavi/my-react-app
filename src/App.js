@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles/app.css'; 
 import LoginPage from './components/LoginPage.js';
 import HomePage from './components/HomePage.js';
+import ContactPage from './components/ContactPagr.js'
 
 const App = () => {
     return (
@@ -12,7 +13,7 @@ const App = () => {
             <Routes>
                 <Route path='/login' element={<LoginPage/>} />
                 <Route path='/' element={<HomePage/>} />
-                <Route/>
+                <Route path='/contact' element={<ContactPage/>}/>
                 <Route/>
             </Routes>
         </BrowserRouter>

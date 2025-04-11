@@ -2,6 +2,8 @@
 // Navbar.js
 import React from 'react';
 import '../styles/navbar.css';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
     return (
@@ -9,9 +11,9 @@ const Navbar = () => {
             <div className="container-fluid">
                 <div className='collapse navbar-collapse ' id='navigation'>
                     <ul className="navbar-nav ml-auto">
-                        <li><a href="#" className="nav-link">Home</a></li>
-                        <li><a href="#" className="nav-link">About</a></li>
-                        <li><a href="#" className="nav-link">Contact</a></li>
+                        <li><Link to="/" className="nav-link">Home</Link></li>
+                        <li><Link to="/about" className="nav-link">About</Link></li>
+                        <li><Link to="/contact" className="nav-link">Contact</Link></li>
                     </ul>
                 </div>
             </div>            
