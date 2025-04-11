@@ -1,25 +1,18 @@
-import React from "react";
-import "../styles/main-panel.css"; 
-import Navbar from "./Navbar";
-import LineChartCard from "./LineChart";
+// src/components/MainPanel.js
+import React from 'react';
+import Navbar from './Navbar';
+import { Outlet } from 'react-router-dom'; // Outlet for nested content
+import '../styles/main-panel.css'
 
-const sampleLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const sampleValues = [65, 59, 80, 81, 56, 55, 40, 70, 90, 100, 110, 120];  
-  
+
 const MainPanel = () => {
   return (
-    <>
-      <div className="main-panel">
-        <Navbar />
-        
-        <div className="content">
-          <div className="row">
-            <LineChartCard labels={sampleLabels} values={sampleValues}></LineChartCard>
-          </div>
+    <div className="main-panel">
+      <Navbar />
+      <div className="content">
+        <Outlet /> {/* Dynamic content from child routes will appear here */}
       </div>
-
-      </div>
-    </>
+    </div>
   );
 };
 
