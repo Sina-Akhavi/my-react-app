@@ -45,6 +45,52 @@
     transform: translateX(10px);
 }
 
+/* Adjust the team container; full width with no horizontal offset */
+.our-team {
+    position: relative;
+    width: 100vw;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+/* The team image now spans the full width of the viewport with a fixed height */
+.team-img {
+    width: 100vw;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+/* The overlay spans the full width and overlaps the image */
+.team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 300px; /* same height as the image */
+    padding: 1rem 2rem 2rem 2rem; /* reduced top padding */
+    background: rgba(123, 47, 247, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* align content at top */
+}
+
+.team-overlay h2 {
+    margin: 0 0 1rem;
+    font-size: 2.5rem;
+}
+
+.team-overlay p {
+    margin: 0;
+    font-size: 1.125rem;
+}
+
+.team-overlay .team-description {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 @media (max-width: 768px) {
     .our-story {
         padding: 1.8rem 2rem;
@@ -53,6 +99,12 @@
         font-size: 2.2rem;
     }
     .our-story p {
+        font-size: 1rem;
+    }
+    .team-overlay h2 {
+        font-size: 2rem;
+    }
+    .team-overlay p {
         font-size: 1rem;
     }
 }

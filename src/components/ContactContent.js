@@ -3,6 +3,8 @@ import "../styles/contact.css";
 import ContactCard from "./ContactCard";
 import "../styles/join-our-team.css"; // New style for join our team section
 import teamImage from "../assets/img/ai.bitcoin.2.webp"; // Ensure the image exists
+import Footer from "./Footer";  
+import '../styles/footer.css'
 
 function ContactContent() {
   return (
@@ -58,32 +60,8 @@ function ContactContent() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2025 Analytics Hub. All rights reserved.</p>
-          <div className="social-icons">
-            <a href="https://x.com" target="_blank" rel="noreferrer">
-              <i className="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-              <i className="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
-              <i className="fa fa-youtube" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-              <i className="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
+      
     </>
   );
 }
