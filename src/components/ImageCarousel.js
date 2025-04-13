@@ -15,11 +15,15 @@ const ImageCarousel = ({ images, interval = 5000 }) => {
 
   return (
     <div className="carousel-container">
-      <img
-        src={images[0]}
-        alt="image_one"
-        className={`carousel-image active`}
-      />
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`carousel-image-${index}`}
+          className={`carousel-image ${index === currentIndex ? "active" : ""}`}
+        />
+      ))}
+      {/* Optional: Add a caption or description for the active image */}
     </div>
   );
 };

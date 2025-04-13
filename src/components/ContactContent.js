@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/contact.css";
 import ContactCard from "./ContactCard";
 import "../styles/join-our-team.css"; // New style for join our team section
-import teamImage from "../assets/img/ai.bitcoin.1.webp"; // Ensure the image exists
+import teamImage from "../assets/img/ai.bitcoin.2.webp"; // Ensure the image exists
 
 function ContactContent() {
   return (
