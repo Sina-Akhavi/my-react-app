@@ -1,7 +1,7 @@
 /* Navbar.css */
 .navbar {
   margin-bottom: 0;
-  
+
   padding: 10px 30px 10px 15px;
   width: 99%;
   z-index: 1050;
@@ -14,22 +14,22 @@
   padding: 0.625rem 0.9375rem;
 }
 
-
 .navbar.navbar-absolute {
   position: absolute;
   z-index: 1050;
-}  /* very important for the position */
+} /* very important for the position */
 
 @media (min-width: 992px) {
   .navbar-expand-lg {
-      flex-flow: row nowrap;
-      justify-content: flex-start;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
   }
 }
 
 @media (min-width: 992px) {
-  .navbar-expand-lg > .container, .navbar-expand-lg > .container-fluid {
-      flex-wrap: nowrap;
+  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container-fluid {
+    flex-wrap: nowrap;
   }
 }
 
@@ -45,7 +45,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .container-fluid {
@@ -58,8 +57,8 @@
 
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-collapse {
-      display: flex !important;
-      flex-basis: auto;
+    display: flex !important;
+    flex-basis: auto;
   }
 }
 
@@ -69,7 +68,7 @@
 
 @media screen and (min-width: 992px) {
   .navbar-collapse {
-      background: none !important;
+    background: none !important;
   }
 }
 
@@ -81,7 +80,7 @@
 
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav {
-      flex-direction: row;
+    flex-direction: row;
   }
 }
 
@@ -112,7 +111,6 @@
   list-style: none;
 }
 
-
 .nav-link:hover {
   color: #007bff;
   background-color: #f8f9fa;
@@ -133,9 +131,72 @@
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smoother transitions */
 }
 
-
 .nav-link:hover {
   background-color: #007bff; /* A prominent blue on hover */
   color: #fff; /* White text on hover */
   box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Subtle shadow on hover */
+}
+
+.navbar-nav li {
+  position: relative;
+}
+
+/* Initial hidden state with opacity and slight offset */
+.navbar-nav li .dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+/* Show the dropdown on hover with smooth animation */
+.navbar-nav li:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Style the dropdown items */
+.dropdown-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Optional: adjust the logo size if needed */
+.logo-image {
+  height: 40px;
+  width: auto;
+}
+
+/* Styling for text based logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: "Arial Black", sans-serif;
+  font-size: 1.5rem;
+  color: #f7931a; /* Bitcoin-themed color */
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }

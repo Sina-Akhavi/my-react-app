@@ -7,6 +7,9 @@ import MainLayout from './layout/MainLayout.js';
 import HomePageContent from './components/HomePageContent.js';
 import AboutContent from './components/AboutContent.js';
 import ContactContent from './components/ContactContent.js'
+import WhatIsAppContent from './components/WhatIsAppContent.js';
+import TeamAndLeadership from './components/TeamAndLeadership.js';
+import ProductContent from './components/ProductContent.js';
 
 const App = () => {
     return (
@@ -17,8 +20,10 @@ const App = () => {
                     <Route index element={<HomePageContent/>} />
                     <Route path='/contact' element={<ContactContent/>}/>
                     <Route path='/about' element={<AboutContent/>}/>
+                    <Route path='/whatisapp' element={<WhatIsAppContent/>}/>
+                    <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
+                    <Route path='/products' element={<ProductContent/>}/>
                 </Route>
-                
             </Routes>
         </BrowserRouter>
     );

@@ -1,0 +1,201 @@
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  border: 3px solid #007BFF;
+  background-color: #e7f0ff;
+}
+
+.content-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: #fafafa;
+}
+
+.product-content {
+  width: 100%;
+}
+
+.section-container {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bf-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bf-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.bf-text {
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+}
+
+.bf-text h2,
+.bf-text h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.bf-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.bf-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.bf-button:hover {
+  background-color: #0056b3;
+}
+
+.bf-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bf-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.bf-paragraph {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+  color: #555;
+}
+
+.bf-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Crypto Analyzer Section */
+.crypto-header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.crypto-button {
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.crypto-button:hover {
+  background-color: #218838;
+}
+
+/* Cards Section */
+.product-cards-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.product-cards-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.product-card {
+  flex: 1 1 calc(30% - 20px); /* Each card takes 30% of the row with spacing */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-card h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #007BFF;
+}
+
+.product-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}

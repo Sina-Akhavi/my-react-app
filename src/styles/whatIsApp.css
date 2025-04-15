@@ -1,0 +1,226 @@
+/* General Page Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  color: #333;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 70vh;
+  background-image: url('../assets/img/ai.bitcoin.2.webp'); /* Replace with your high-res image */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove dark background to let the image shine through */
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #fff;
+  /* Use text shadow for enhanced readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-overlay h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  animation: slideDown 1s ease-out;
+}
+
+.hero-overlay p {
+  font-size: 1.5rem;
+  animation: slideUp 1s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transparent Button Styling */
+.explore-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.explore-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.explore-btn:focus {
+  outline: none;
+}
+
+/* About App Section */
+.app-info {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem 2rem;
+  background: #fafbfd;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-app {
+  flex: 1;
+  min-width: 320px;
+}
+
+.about-app h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.about-app p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Features Section */
+.features {
+  padding: 4rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.feature-item {
+  background: #f7f9fc;
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.feature-item:hover {
+  transform: translateY(-10px);
+}
+
+.feature-item .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.feature-item h3 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+  color: #444;
+  line-height: 1.2;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Demo Section */
+.demo {
+  padding: 4rem 2rem;
+  background: #fafbfd;
+  text-align: center;
+}
+
+.demo h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.demo p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.video-placeholder {
+  border: 3px dashed #7b2ff7;
+  padding: 3rem;
+  border-radius: 10px;
+  color: #7b2ff7;
+  font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 2.5rem;
+  }
+  .hero-overlay p {
+    font-size: 1.2rem;
+  }
+  .app-info {
+    flex-direction: column;
+  }
+  .about-app,
+  .about-image {
+    text-align: center;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
