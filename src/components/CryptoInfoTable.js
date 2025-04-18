@@ -7,6 +7,7 @@ const CryptoInfoTable = () => {
     const [toDate, setToDate] = useState("");
     const [allData, setAllData] = useState([]);
     const [cryptoData, setCryptoData] = useState([]);
+    const [first30Close, setFirst30Close] = useState([]);
 
     useEffect(() => {
         fetch("btc_data.csv")
@@ -20,6 +21,7 @@ const CryptoInfoTable = () => {
                         const reversedData = data.reverse();
                         setAllData(reversedData);
                         setCryptoData(reversedData);
+                        setFirst30Close(reversedData.slice(0, 30).map((row) => ({[row.Date]: parseFloat(row.Close)})));
                     },
                 });
             })
@@ -28,6 +30,8 @@ const CryptoInfoTable = () => {
 
     const handleFilter = (e) => {
         e.preventDefault();
+        
+        console.log("30 Filtered Data:", first30Close);
         let filtered = allData;
         if (fromDate) {
             filtered = filtered.filter((row) => new Date(row.Date) >= new Date(fromDate));
@@ -35,7 +39,7 @@ const CryptoInfoTable = () => {
         if (toDate) {
             filtered = filtered.filter((row) => new Date(row.Date) <= new Date(toDate));
         }
-        console.log("Filtered Data:", filtered);
+        setFirst30Close(filtered.slice(0, 30).map((row) => ({[row.Date]: parseFloat(row.Close)})));
         setCryptoData(filtered);
     };
 
