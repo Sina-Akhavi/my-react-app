@@ -64,12 +64,12 @@ const Sidebar = () => {
             {showProductMenu && (
               <ul className="product-menu">
                 <li>
-                  <Link to="/bitcoin-forecaster" className="btn">
+                  <Link to="/products " className="btn">
                     bitcoin forecaster
                   </Link>
                 </li>
                 <li>
-                  <Link to="/crypto-analyzer" className="btn">
+                  <Link to="/products" className="btn">
                     crypto analyzer
                   </Link>
                 </li>
