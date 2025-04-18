@@ -10,6 +10,7 @@ import ContactContent from './components/ContactContent.js'
 import WhatIsAppContent from './components/WhatIsAppContent.js';
 import TeamAndLeadership from './components/TeamAndLeadership.js';
 import ProductContent from './components/ProductContent.js';
+import CryptoInfoTable from './components/CryptoInfoTable.js';
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                     <Route path='/what-is-app' element={<WhatIsAppContent/>}/>
                     <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
                     <Route path='/products' element={<ProductContent/>}/>
+                    <Route path='/bitcoin-table' element={<CryptoInfoTable/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
