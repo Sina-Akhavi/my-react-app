@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import "../styles/line-chart.css"; 
+import "../styles/line-chart.css";
 
 ChartJS.register(
   CategoryScale,
@@ -27,10 +27,9 @@ const LineChartCard = ({
   values,
   graphHeight,
   graphWidth,
-  dynamicClassName = "graph-style",   
-  dynamicCSS                         
+  dynamicClassName = "graph-style",
+  dynamicCSS,
 }) => {
-
   const data = {
     labels: labels,
     datasets: [
@@ -38,7 +37,8 @@ const LineChartCard = ({
         label: "Line Chart Data",
         data: values,
         fill: true,
-        borderColor: "#1abc9c",
+        borderColor: "#f39c12", // New accent color
+        backgroundColor: "rgba(243,156,18,0.2)", // Light orange fill
       },
     ],
   };
@@ -55,9 +55,21 @@ const LineChartCard = ({
       },
     },
     scales: {
+      x: {
+        ticks: {
+          font: {
+            weight: "bold",
+          },
+          color: "black", // Darker color for x-axis labels
+        },
+      },
       y: {
         ticks: {
           stepSize: 5,
+          font: {
+            weight: "bold",
+          },
+          color: "black", // Darker color for y-axis numbers
         },
       },
     },
