@@ -29,9 +29,23 @@ const Navbar = () => {
                                 <li><Link to="/contact/sales" className="dropdown-item">Sales</Link></li>
                             </ul>
                         </li>
+                        {/* Product Dropdown */}
+                        <li className="nav-item dropdown">
+                            <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
+                                Product
+                            </Link>
+                            <ul className="dropdown-menu">
+                                <li><Link to="/products" className="dropdown-item">Bitcoin Forecaster</Link></li>
+                                <li><Link to="/products" className="dropdown-item">Crypto Analyzer</Link></li>
+                            </ul>
+                        </li>
                     </ul>
                     <div className="navbar-logo ml-auto">
                         <Link to="/" className="logo-text">Bitcoin Forecaster</Link>
+                    </div>
+                    {/* Login Button */}
+                    <div className="navbar-login ml-auto">
+                        <Link to="/login" className="btn btn-primary login-button">Login</Link>
                     </div>
                 </div>
             </div>            

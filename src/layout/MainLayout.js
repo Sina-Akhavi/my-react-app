@@ -1,14 +1,18 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import MainPanel from '../components/MainPanel';
-import { Outlet } from 'react-router-dom'; // Outlet is used for rendering child routes
+import { Outlet, useLocation } from 'react-router-dom'; 
 
 function MainLayout() {
+  const location = useLocation(); 
+
+  const noSidebarPaths = ['/contact', '/about', '/what-is-app', '/products'];
+
   return (
     <div className="wrapper">
-      {/* <Sidebar /> */}
+      {!noSidebarPaths.includes(location.pathname) && <Sidebar />}
       <MainPanel>
-        <Outlet /> 
+        <Outlet />
       </MainPanel>
     </div>
   );

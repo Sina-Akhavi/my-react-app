@@ -101,3 +101,77 @@
   opacity: 0.8;
 }
 
+.sidebar-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.sidebar-login .login-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-login .login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Product Button style */
+.product-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #f0f0f0;
+  padding: 12px 20px;
+  font-size: 1rem;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-button:hover {
+  background: linear-gradient(135deg, #754c78, #75a64d);
+  color: #fff;
+}
+
+/* Dropdown menu styling for product button */
+.product-menu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.product-menu li {
+  margin-bottom: 5px;
+}
+
+/* Style for buttons inside product-menu */
+.product-menu .btn {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-menu .btn:hover {
+  background: linear-gradient(135deg, #754c78, #75a64d);
+  color: #fff;
+  width: 150px;
+
+}

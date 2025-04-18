@@ -14,8 +14,8 @@ function ContactContent() {
       <br />
 
       <div style={{ textAlign: "center" }}>
-        <h1>Contact</h1>
-        <h3>We’d love to hear from you.</h3>
+        <h1 className="contact-h1">Contact</h1>
+        <h3 className="contact-h3">We’d love to hear from you.</h3>
       </div>
 
       <div className="contact-card-container">

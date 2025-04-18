@@ -1,11 +1,11 @@
-h1 {
+.contact-h1 {
   text-align: center;
   font-size: 54px;
   line-height: 1.1em;
   color: rgb(19, 19, 167);
 }
 
-h3 {
+.constact-h3 {
   text-align: center;
   line-height: 0.2em;
   font-size: 28px;
