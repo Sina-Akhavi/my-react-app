@@ -1,17 +1,15 @@
 .card {
-  background: #dfc545;
-  border: 0;
+  background-color: #a7caf0; /* light grey background for contrast */
+  border: none;
   width: 100%;
   height: 450px;
-  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #ffffff;
   background-clip: border-box;
-  border: 0.0625rem solid rgba(34, 42, 66, 0.05);
   border-radius: 0.2857rem;
 }
 
@@ -22,7 +20,7 @@
 }
 
 .card .card-header .card-title {
-    color: #42d615;
+    color: #1a6e00;
     font-weight: 500;
 }
 
@@ -35,4 +33,4 @@
     display: block;
     /* height: 60% !important;
     width: 1039px !important;  convert to 100%  */
-} 
+}
