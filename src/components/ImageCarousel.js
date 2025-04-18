@@ -23,7 +23,6 @@ const ImageCarousel = ({ images, interval = 5000 }) => {
           className={`carousel-image ${index === currentIndex ? "active" : ""}`}
         />
       ))}
-      {/* Optional: Add a caption or description for the active image */}
     </div>
   );
 };

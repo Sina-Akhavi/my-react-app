@@ -1,0 +1,103 @@
+.crypto-info-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.filter-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px; /* Increased gap value for more spacing */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-control {
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.filter-button {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease-in-out;
+    margin: 10px 0; /* Add vertical margin to ensure enough space */
+}
+
+.filter-button:hover {
+    background-color: #218838;
+}
+
+.table-section {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.crypto-table th,
+.crypto-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.crypto-table th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.crypto-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.ai-description-box {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.ai-description-box h2 {
+    margin-top: 0;
+}
