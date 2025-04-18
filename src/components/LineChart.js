@@ -10,9 +10,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import "../styles/line-chart.css"; // Create a separate CSS file for styling
+import "../styles/line-chart.css"; 
 
-// Register necessary Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,7 +22,15 @@ ChartJS.register(
   Legend
 );
 
-const LineChartCard = ({ labels, values }) => {
+const LineChartCard = ({
+  labels,
+  values,
+  graphHeight,
+  graphWidth,
+  dynamicClassName = "graph-style",   
+  dynamicCSS                         
+}) => {
+
   const data = {
     labels: labels,
     datasets: [
@@ -56,17 +63,29 @@ const LineChartCard = ({ labels, values }) => {
     },
   };
 
+  const defaultCSS = `
+    .${dynamicClassName} {
+      box-sizing: border-box;
+      display: block;
+      height: ${graphHeight};
+      width: ${graphWidth};
+    }
+  `;
+
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="row">
-          <div className="card-header">
-            <h1 className="card-title">Bitcoin Price</h1>
+    <>
+      <style>{dynamicCSS ? dynamicCSS : defaultCSS}</style>
+      <div className="card">
+        <div className="card-header">
+          <div className="row">
+            <div className="card-header">
+              <h1 className="card-title">Bitcoin Price</h1>
+            </div>
           </div>
+          <Line className={dynamicClassName} data={data} options={options} />
         </div>
-        <Line className="graph-style" data={data} options={options}/>
       </div>
-    </div>
+    </>
   );
 };
 

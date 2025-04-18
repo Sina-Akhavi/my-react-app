@@ -4,9 +4,10 @@
 
   padding: 10px 30px 10px 15px;
   width: 99%;
-  z-index: 1050;
+  z-index: 1000; /* Ensure that the navbar stays above other elements */
   background: #1a177c; /* Light gray background */
-  position: relative;
+  position: fixed;
+  top: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -33,6 +33,6 @@
 .graph-style {
     box-sizing: border-box;
     display: block;
-    height: 60% !important;
-    width: 1039px !important;
-}
+    /* height: 60% !important;
+    width: 1039px !important;  convert to 100%  */
+} 

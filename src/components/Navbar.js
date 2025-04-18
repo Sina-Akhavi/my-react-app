@@ -4,7 +4,7 @@ import '../styles/navbar.css';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-transparent">
             <div className="container-fluid">
                 <div className="collapse navbar-collapse" id="navigation">
                     <ul className="navbar-nav">
