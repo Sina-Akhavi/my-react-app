@@ -17,7 +17,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 30px; /* Increased gap value for more spacing */
+    justify-content: center;
+    gap: 50px;
 }
 
 .form-group {
