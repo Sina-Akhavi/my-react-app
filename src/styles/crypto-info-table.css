@@ -102,3 +102,8 @@
 .ai-description-box h2 {
     margin-top: 0;
 }
+
+.table-wrapper {
+    max-height: 500px; /* adjust based on your design */
+    overflow-y: auto;
+}
