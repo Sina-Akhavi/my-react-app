@@ -19,7 +19,6 @@ function HomePageContent() {
 
   return (
     <>
-      
       <div className="content">
 
         <div className="row">

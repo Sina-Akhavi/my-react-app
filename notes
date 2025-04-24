@@ -12,3 +12,32 @@
 ایده برای بیتکوین و رمز ارز:‌ 
 -- چیزی مثل news room
 
+
+
+
+- نمودارهای بیتکوینی
+-- صفحه اول
+-- یک صفحه مربوط به جدول
+-- یک ابزار آنالیز
+
+
+aa-JzwxqGzwtOHYBn83WELbTEpDKV12bfZRrjBcfeLRTBnbwpER
+
+curl https://api.avalai.ir/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer aa-JzwxqGzwtOHYBn83WELbTEpDKV12bfZRrjBcfeLRTBnbwpER" \
+  -d '{
+  "model": "gpt-4o",
+  "messages": [
+  {
+    "role": "system",
+    "content": "You are a helpful assistant."
+  },
+  {
+    "role": "user",
+    "content": "write two paragraphs about bitcoin!"
+  }
+  ]
+}'
+
+

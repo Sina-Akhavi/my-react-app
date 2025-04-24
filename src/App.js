@@ -11,12 +11,14 @@ import WhatIsAppContent from './components/WhatIsAppContent.js';
 import TeamAndLeadership from './components/TeamAndLeadership.js';
 import ProductContent from './components/ProductContent.js';
 import CryptoInfoTable from './components/CryptoInfoTable.js';
+import RegisterPage from './components/RegisterPage.js';
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<LoginPage/>} />
+                <Route path='/register' element={<RegisterPage/>} />
                 <Route path='/' element={<MainLayout/>}>
                     <Route index element={<HomePageContent/>} />
                     <Route path='/contact' element={<ContactContent/>}/>
