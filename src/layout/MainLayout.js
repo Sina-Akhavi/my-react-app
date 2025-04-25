@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Sidebar from '../components/Sidebar';
 import MainPanel from '../components/MainPanel';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Modal from '../components/ModalComponent';
+import { AuthContext } from '../context/AuthContext';
 
 function MainLayout() {
     const location = useLocation();
-    const navigate = useNavigate();
-    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    const { isLogoutModalOpen, handleLogout, closeLogoutModal } = useContext(AuthContext);
     
     const noSidebarPaths = ['/contact', '/about', '/what-is-app', '/products'];
-
-    const handleLogout = () => {
-        setIsLogoutModalOpen(false);
-        navigate('/login');
-    };
 
     return (
         <div className="wrapper">
             {!noSidebarPaths.includes(location.pathname) && <Sidebar />}
-            <MainPanel onLogoutClick={() => setIsLogoutModalOpen(true)}>
+            <MainPanel>
                 <Outlet />
             </MainPanel>
 
@@ -32,7 +27,7 @@ function MainLayout() {
                             <button className="btn btn-danger" onClick={handleLogout}>
                                 Yes, Logout
                             </button>
-                            <button className="btn btn-secondary" onClick={() => setIsLogoutModalOpen(false)}>
+                            <button className="btn btn-secondary" onClick={closeLogoutModal}>
                                 Cancel
                             </button>
                         </div>

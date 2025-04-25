@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/navbar.css';
 
-const Navbar = ({ onLogoutClick }) => {
+const Navbar = () => {
+    const { openLogoutModal } = useContext(AuthContext);
+
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-transparent">
             <div className="container-fluid">
@@ -47,7 +50,7 @@ const Navbar = ({ onLogoutClick }) => {
                     <div className="navbar-login ml-auto">
                         <button 
                             className="btn btn-primary login-button"
-                            onClick={onLogoutClick}
+                            onClick={openLogoutModal}
                         >
                             Logout
                         </button>
