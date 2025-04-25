@@ -1,19 +1,16 @@
 // src/components/MainPanel.js
 import React from 'react';
-import { Outlet } from 'react-router-dom'; // Outlet for nested content
-import '../styles/main-panel.css'
-// import '../styles/sidebar.css'
-
-// import Sidebar from './Sidebar';
+import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
+import '../styles/main-panel.css';
 
-const MainPanel = () => {
-  return (
-    <div className="main-panel">
-      <Navbar />
-        <Outlet /> {/* Put the Content Here */}
-    </div>
-  );
+const MainPanel = ({ onLogoutClick }) => {
+    return (
+        <div className="main-panel">
+            <Navbar onLogoutClick={onLogoutClick} />
+            <Outlet />
+        </div>
+    );
 };
 
 export default MainPanel;

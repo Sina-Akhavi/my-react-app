@@ -12,32 +12,22 @@
 ایده برای بیتکوین و رمز ارز:‌ 
 -- چیزی مثل news room
 
-
-
-
 - نمودارهای بیتکوینی
 -- صفحه اول
 -- یک صفحه مربوط به جدول
 -- یک ابزار آنالیز
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+۵ اردیبهشت‌ماه ۱۴۰۴
 
-aa-JzwxqGzwtOHYBn83WELbTEpDKV12bfZRrjBcfeLRTBnbwpER
+۱. بحث authentication تمام شود.
+۲. بخش استفاده از هوش مصنوعی(gpt) تمام شود.
+---------------------------------------------------
+۱. بخش login 
+۲. بخش reset password
+۳. بخش log out
+۴. کاربر نباید بتواند با url خودش را به page های مختلف برساند.
 
-curl https://api.avalai.ir/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer aa-JzwxqGzwtOHYBn83WELbTEpDKV12bfZRrjBcfeLRTBnbwpER" \
-  -d '{
-  "model": "gpt-4o",
-  "messages": [
-  {
-    "role": "system",
-    "content": "You are a helpful assistant."
-  },
-  {
-    "role": "user",
-    "content": "write two paragraphs about bitcoin!"
-  }
-  ]
-}'
+
 
 

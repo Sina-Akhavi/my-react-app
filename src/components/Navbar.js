@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onLogoutClick }) => {
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-transparent">
             <div className="container-fluid">
@@ -43,9 +43,14 @@ const Navbar = () => {
                     <div className="navbar-logo ml-auto">
                         <Link to="/" className="logo-text">Bitcoin Forecaster</Link>
                     </div>
-                    {/* Login Button */}
+                    {/* Logout Button */}
                     <div className="navbar-login ml-auto">
-                        <Link to="/login" className="btn btn-primary login-button">Login</Link>
+                        <button 
+                            className="btn btn-primary login-button"
+                            onClick={onLogoutClick}
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>            
