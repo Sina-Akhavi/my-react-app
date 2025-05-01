@@ -20,9 +20,14 @@ function MainLayout() {
 
             {isLogoutModalOpen && (
                 <Modal>
-                    <div className="modal-content">
-                        <h5>Confirm Logout</h5>
-                        <p>Are you sure you want to log out?</p>
+                    <div className="modal-inner">
+                        <div className="modal-header">
+                            <h5>Confirm Logout</h5>
+                            <button className="modal-close" onClick={closeLogoutModal}>&times;</button>
+                        </div>
+                        <div className="modal-body">
+                            <p>Are you sure you want to log out?</p>
+                        </div>
                         <div className="modal-buttons">
                             <button className="btn btn-danger" onClick={handleLogout}>
                                 Yes, Logout
