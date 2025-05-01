@@ -12,7 +12,10 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogout = () => {
         setIsLogoutModalOpen(false);
-        // Add any logout cleanup logic here (e.g. clearing tokens)
+        
+        localStorage.removeItem('access'); 
+        localStorage.removeItem('refresh'); 
+        
         navigate('/login');
     };
 
