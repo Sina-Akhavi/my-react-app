@@ -4,31 +4,114 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.75);
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 9999;
+    justify-content: center;
+    z-index: 1500;
 }
 
 .modal {
-    background: white;
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
     padding: 2rem;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.4s ease-out;
+    position: relative;
 }
 
-.modal-content h5 {
-    margin-top: 0;
-}
-
-.modal-buttons {
+/* Added inner container for structured markup (optional) */
+.modal-inner {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 1.5rem;
+    flex-direction: column;
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced Header Styling */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h5 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Optional Close Button */
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+/* Enhanced Body Styling */
+.modal-body {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    text-align: right;
 }
 
 .modal-buttons button {
     margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-buttons button.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.modal-buttons button.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.modal-buttons button.btn-secondary {
+    background-color: #95a5a6;
+    color: #fff;
+}
+
+.modal-buttons button.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* Additional text styles if needed */
+.modal-content h5 {
+    margin-top: 0;
 }
