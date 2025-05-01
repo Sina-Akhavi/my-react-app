@@ -56,7 +56,7 @@ const ForgotPasswordContent = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn">Reset Password</button>
+                    <button type="submit" className="forgot-password-btn">Reset Password</button>
                 </form>
             </div>
         </div>
