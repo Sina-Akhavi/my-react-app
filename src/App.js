@@ -14,6 +14,7 @@ import ProductContent from './components/ProductContent.js';
 import CryptoInfoTable from './components/CryptoInfoTable.js';
 import RegisterPage from './components/RegisterPage.js';
 import ForgotPasswordContent from './components/ForgotPasswordContent.js'
+import ResetPasswordContent from './components/ResetPasswordContent.js';
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
             <AuthProvider>
                 <Routes>
                     <Route path='/login' element={<LoginPage/>} />
+                    <Route path='/reset-password' element={<ResetPasswordContent/>} />
                     <Route path='/forgot-password' element={<ForgotPasswordContent/>} />
                     <Route path='/register' element={<RegisterPage/>} />
                     <Route path='/' element={<MainLayout/>}>
