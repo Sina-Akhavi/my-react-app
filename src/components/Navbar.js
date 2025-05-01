@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import '../styles/navbar.css';
 
 const Navbar = () => {
-    const { openLogoutModal } = useContext(AuthContext);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
 
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-transparent">
@@ -46,14 +52,12 @@ const Navbar = () => {
                     <div className="navbar-logo ml-auto">
                         <Link to="/" className="logo-text">Bitcoin Forecaster</Link>
                     </div>
-                    {/* Logout Button */}
                     <div className="navbar-login ml-auto">
-                        <button 
-                            className="btn btn-primary login-button"
-                            onClick={openLogoutModal}
-                        >
-                            Logout
-                        </button>
+                        {username && (
+                            <div className="user-greeting">
+                                <span className="greeting-text">Hello, {username}</span>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>            

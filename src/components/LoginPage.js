@@ -40,7 +40,7 @@ function LoginPage() {
       if (response.ok) {
         localStorage.setItem('access', data.access);
         localStorage.setItem('refresh', data.refresh);
-        console.log('Local Storage', localStorage);
+        localStorage.setItem('username', data.username);
         
         navigate('/');
       } else {
