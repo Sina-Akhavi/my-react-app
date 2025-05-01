@@ -55,7 +55,9 @@ const Navbar = () => {
                     <div className="navbar-login ml-auto">
                         {username && (
                             <div className="user-greeting">
-                                <span className="greeting-text">Hello, {username}</span>
+                                <Link to="/profile" className="greeting-text">
+                                    Hello, {username}
+                                </Link>
                             </div>
                         )}
                     </div>

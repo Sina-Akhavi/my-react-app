@@ -234,3 +234,14 @@
     margin: 0;
     font-size: 1rem;
 }
+
+.greeting-text {
+    color: #333;         /* Adjust to your preferred text color */
+    text-decoration: none; /* Remove underlines */
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.greeting-text:hover {
+    color: #333; /* Prevent color change on hover */
+}
