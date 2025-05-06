@@ -29,6 +29,7 @@ const LineChartCard = ({
   graphWidth,
   dynamicClassName = "graph-style",
   dynamicCSS,
+  title
 }) => {
   const data = {
     labels: labels,
@@ -91,7 +92,7 @@ const LineChartCard = ({
         <div className="card-header">
           <div className="row">
             <div className="card-header">
-              <h1 className="card-title">Bitcoin Price</h1>
+              <h1 className="card-title">{title}</h1>
             </div>
           </div>
           <Line className={dynamicClassName} data={data} options={options} />
