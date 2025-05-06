@@ -16,28 +16,30 @@ import RegisterPage from './components/RegisterPage.js';
 import ForgotPasswordContent from './components/ForgotPasswordContent.js'
 import ResetPasswordContent from './components/ResetPasswordContent.js';
 import ProfileContent from './components/ProfileContent.js';
- 
+import { CSVDataProvider } from './context/CSVDataContext.js'; 
 
 const App = () => {
     return (
         <BrowserRouter>
             <AuthProvider>
-                <Routes>
-                    <Route path='/login' element={<LoginPage/>} />
-                    <Route path='/profile' element={<ProfileContent/>} />
-                    <Route path='/reset-password' element={<ResetPasswordContent/>} />
-                    <Route path='/forgot-password' element={<ForgotPasswordContent/>} />
-                    <Route path='/register' element={<RegisterPage/>} />
-                    <Route path='/' element={<MainLayout/>}>
-                        <Route index element={<HomePageContent/>} />
-                        <Route path='/contact' element={<ContactContent/>}/>
-                        <Route path='/about' element={<AboutContent/>}/>
-                        <Route path='/what-is-app' element={<WhatIsAppContent/>}/>
-                        <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
-                        <Route path='/products' element={<ProductContent/>}/>
-                        <Route path='/bitcoin-table' element={<CryptoInfoTable/>}/>
-                    </Route>
-                </Routes>
+                <CSVDataProvider>
+                    <Routes>
+                        <Route path='/login' element={<LoginPage/>} />
+                        <Route path='/profile' element={<ProfileContent/>} />
+                        <Route path='/reset-password' element={<ResetPasswordContent/>} />
+                        <Route path='/forgot-password' element={<ForgotPasswordContent/>} />
+                        <Route path='/register' element={<RegisterPage/>} />
+                        <Route path='/' element={<MainLayout/>}>
+                            <Route index element={<HomePageContent/>} />
+                            <Route path='/contact' element={<ContactContent/>}/>
+                            <Route path='/about' element={<AboutContent/>}/>
+                            <Route path='/what-is-app' element={<WhatIsAppContent/>}/>
+                            <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
+                            <Route path='/products' element={<ProductContent/>}/>
+                            <Route path='/bitcoin-table' element={<CryptoInfoTable/>}/>
+                        </Route>
+                    </Routes>
+                </CSVDataProvider>
             </AuthProvider>
         </BrowserRouter>
     );
