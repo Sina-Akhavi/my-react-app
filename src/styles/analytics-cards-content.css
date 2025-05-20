@@ -1,0 +1,89 @@
+/* General Page Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  color: #333;
+}
+
+/* Hero Section */
+.analytics-cards-image {
+  position: relative;
+  height: 70vh;
+  background-image: url('../assets/img/ai.bitcoin.4.webp'); /* Replace with your high-res image */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove dark background to let the image shine through */
+.analytics-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #fff;
+  /* Use text shadow for enhanced readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.analytics-overlay h1 {
+    font-size: xx-large;
+}
+
+.analytics-overlay p {
+    font-size: x-large;
+}
+
+
+
+/* Cards section */
+.cards-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Each row holds two cards */
+.cards-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Remove default link styles for card links */
+.card-link {
+  text-decoration: none;
+  flex: 1;
+}
+
+/* Card styling */
+.analytic-card {
+  background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.analytic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Icon styling */
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
