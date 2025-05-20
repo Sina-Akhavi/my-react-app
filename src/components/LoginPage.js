@@ -1,25 +1,18 @@
-// src/pages/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/login.css'; // Import the CSS file
+import { useAuth } from '../context/AuthContext';   // <-- your context hook
+import '../styles/login.css';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(''); // Clear any previous errors
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
 
     if (!username || !password) {
       setError('Please enter both username and password.');
@@ -27,28 +20,10 @@ function LoginPage() {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('access', data.access);
-        localStorage.setItem('refresh', data.refresh);
-        localStorage.setItem('username', data.username);
-        
-        navigate('/');
-      } else {
-        setError(data.message || 'Login failed. Please check your credentials.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setError('An unexpected error occurred. Please try again later.');
+      await login(username, password);
+      navigate('/');
+    } catch (err) {
+      setError(err.message || 'Login failed. Please check your credentials.');
     }
   };
 
@@ -61,19 +36,19 @@ function LoginPage() {
           <div className="form-group">
             <label htmlFor="username">Username:</label>
             <input
-              type="text"
               id="username"
+              type="text"
               value={username}
-              onChange={handleUsernameChange}
+              onChange={e => setUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
             <input
-              type="password"
               id="password"
+              type="password"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
           <button type="submit" className="login-button">
