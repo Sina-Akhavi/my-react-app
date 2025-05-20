@@ -31,7 +31,7 @@ const Sidebar = () => {
             </a>
           </li>
           <li className="sidebar-item">
-            <a className="a-item" href="#">
+            <a className="a-item" href="/bitcoin-table">
               <i
                 className="fa fa-bar-chart"
                 aria-hidden="true"
@@ -41,7 +41,7 @@ const Sidebar = () => {
             </a>
           </li>
           <li className="sidebar-item">
-            <a className="a-item" href="/bitcoin-table">
+            <a className="a-item" href="/analytics">
               <i
                 className="fa fa-line-chart"
                 aria-hidden="true"
