@@ -17,6 +17,8 @@ import ForgotPasswordContent from './components/ForgotPasswordContent.js'
 import ResetPasswordContent from './components/ResetPasswordContent.js';
 import ProfileContent from './components/ProfileContent.js';
 import { CSVDataProvider } from './context/CSVDataContext.js'; 
+import AnalyticsCardsContent from './components/AnalyticsCardsContent.js';
+
 
 const App = () => {
     return (
@@ -37,6 +39,7 @@ const App = () => {
                             <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
                             <Route path='/products' element={<ProductContent/>}/>
                             <Route path='/bitcoin-table' element={<CryptoInfoTable/>}/>
+                            <Route path='/analytics' element={<AnalyticsCardsContent/>}/>
                         </Route>
                     </Routes>
                 </CSVDataProvider>
