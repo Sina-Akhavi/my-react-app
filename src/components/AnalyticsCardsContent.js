@@ -43,13 +43,13 @@ function AnalyticsCardsContent() {
           </Link>
         </div>
         <div className="cards-row">
-          <Link to="#" className="card-link">
+          <Link to="/analyzer/arima-lstm" className="card-link">
             <div className="analytic-card">
               <i className="fas fa-balance-scale card-icon"></i>
               <h2>ARIMA vs LSTM</h2>
             </div>
           </Link>
-          <Link to="#" className="card-link">
+          <Link to="/analyzer/forecasting-models" className="card-link">
             <div className="analytic-card">
               <i className="fas fa-info-circle card-icon"></i>
               <h2>About Forecasting Models</h2>

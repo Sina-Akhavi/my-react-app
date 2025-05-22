@@ -1,0 +1,124 @@
+/* Import Google Fonts for a modern look */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container for the forecasting models component with a subtle gradient background */
+.forecast-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+/* Specific styling for the forecasting sections/cards */
+.forecast-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideIn 1.2s forwards;
+}
+
+/* Section header styling with updated icons and colors */
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-icon {
+  font-size: 2rem;
+  margin-right: 15px;
+  color: #28a745;
+}
+
+/* Section content styling with enhanced legibility */
+.section-content {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #343a40;
+}
+
+/* Moving background objects for added visual interest */
+.moving-object {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(40, 167, 69, 0.1);
+  border-radius: 50%;
+  animation: moveAround 5s linear infinite;
+}
+
+/* Position variations for different sections */
+.forecast-ts .moving-object {
+  top: -20px;
+  left: -20px;
+}
+
+.forecast-gru .moving-object {
+  bottom: -20px;
+  right: -20px;
+}
+
+.forecast-models .moving-object {
+  top: -20px;
+  right: -20px;
+}
+
+/* Keyframes for fade and slide in animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes for moving object animation */
+@keyframes moveAround {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, 20px);
+  }
+  50% {
+    transform: translate(0, 40px);
+  }
+  75% {
+    transform: translate(-20px, 20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .forecast-container {
+    padding: 20px;
+  }
+  .forecast-section {
+    padding: 20px;
+  }
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.forecast-container .forecast-section:first-child {
+  margin-top: 60px;
+}
