@@ -15,7 +15,7 @@ function AnalyticsCardsContent() {
 
       <section className="cards-section">
         <div className="cards-row">
-          <Link to="#" className="card-link">
+          <Link to="/analyzer/arima-evaluation" className="card-link">
             <div className="analytic-card">
               <i className="fas fa-chart-line card-icon"></i>
               <h2>ARIMA Evaluation</h2>

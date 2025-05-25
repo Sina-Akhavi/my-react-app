@@ -15,7 +15,9 @@ function MainLayout() {
   } = useAuth();
 
   // example: only certain paths show sidebar
-  const noSidebarPaths = ["/contact", "/about", "/products", "/what-is-app", "/analytics", "/analyzer/arima-lstm", "/analyzer/forecasting-models"];
+  const noSidebarPaths = ["/contact", "/about", "/products", "/what-is-app", "/analytics",
+                          "/analyzer/arima-lstm", "/analyzer/forecasting-models", 
+                          "/analyzer/arima-evaluation"];
 
   return (
     <div className="wrapper">

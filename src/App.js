@@ -20,6 +20,7 @@ import { CSVDataProvider } from './context/CSVDataContext.js';
 import AnalyticsCardsContent from './components/AnalyticsCardsContent.js';
 import ARIMALSTMComparisonContent from './components/ArimaLstmComparisonContent.js'
 import ForecastingModelsContent from './components/ForecastingModelsContent.js'
+import ArimaEvaluationContent from './components/AimaEvaluationContent.js'
 
 const App = () => {
     return (
@@ -43,6 +44,7 @@ const App = () => {
                             <Route path='/analytics' element={<AnalyticsCardsContent/>}/>
                             <Route path='/analyzer/arima-lstm' element={<ARIMALSTMComparisonContent/>}/>
                             <Route path='/analyzer/forecasting-models' element={<ForecastingModelsContent/>}/>
+                            <Route path='/analyzer/arima-evaluation' element={<ArimaEvaluationContent/>}/>
                         </Route>
                     </Routes>
                 </CSVDataProvider>
