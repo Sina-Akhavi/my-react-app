@@ -20,7 +20,7 @@ import { CSVDataProvider } from './context/CSVDataContext.js';
 import AnalyticsCardsContent from './components/AnalyticsCardsContent.js';
 import ARIMALSTMComparisonContent from './components/ArimaLstmComparisonContent.js'
 import ForecastingModelsContent from './components/ForecastingModelsContent.js'
-import ArimaEvaluationContent from './components/AimaEvaluationContent.js'
+import ArimaEvaluationContent from './components/ArimaEvaluationContent.js'
 
 const App = () => {
     return (

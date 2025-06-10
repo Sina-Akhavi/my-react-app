@@ -47,7 +47,7 @@
 }
 
 /* Table container */
-.evaluation-table-container {
+.evaluation-table-container, .evaluation-metric-container, .evaluation-chart-container {
   background: #f9f9f9;
   padding: 20px;
   margin: 20px auto;
