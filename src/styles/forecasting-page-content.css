@@ -1,0 +1,147 @@
+.forecasting-page-container { /* Add this class to your main div in JSX */
+    position: relative; /* Needed for ::before to position correctly */
+    z-index: 1; /* Ensures content is above the pseudo-element */
+    /* Add padding/height as needed if the content doesn't stretch it enough */
+    padding: 20px; /* Example */
+    min-height: 1000px  ; /* Example */
+}
+
+.forecasting-page-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/ai.bitcoin.2.webp'); /* Replace with your image path */
+    background-size: cover; /* Or 'contain', '100% 100%', etc. */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5; /* Adjust this value (0.0 to 1.0) for transparency */
+    z-index: -1; /* Puts the pseudo-element behind the main content */
+}
+
+/* Ensure your existing content has a background if needed,
+   e.g., if forecasting-description-panel has a solid background,
+   the transparent image behind the main container won't show through it.
+   You might need to make its background transparent as well. */
+.forecasting-description-panel {
+    /* Example: if you had a background here, remove or make it transparent */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for the panel */
+    padding: 20px; /* Example */
+    border-radius: 8px; /* Example */
+}
+
+/* Any other elements that should be above the background image */
+/* For instance, if your form or table has a solid background, the image won't show through.
+   You might need to adjust their background colors to rgba values. */
+
+
+/* .forecasting-description-panel {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+} */
+
+.forecasting-description-panel p {
+  font-size: large;
+}
+
+/* Button styling */
+button {
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #005a9e;
+}
+
+/* Filter form styling */
+form {
+  margin: 20px 0;
+}
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+table th {
+  background-color: #f1f1f1;
+}
+
+/* Forecasting Graph Container styling */
+.forecasting-graph-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Forecasting Legend Item styling */
+.forecasting-legend-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Forecasting Legend Color styling */
+.forecasting-legend-color {
+  width: 60px;
+  height: 25px;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+/* CSV legend color */
+.forecasting-csv-color {
+  background-color: #4caf50;
+}
+
+/* Forecasted values legend color */
+.forecasting-forecast-color {
+  background-color: #ff5722;
+}
+
+/* Title styling */
+.forecasting-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #007acc;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .forecasting-description-panel, 
+  .forecasting-graph-container {
+    padding: 10px;
+  }
+  button {
+    width: 100%;
+  }
+}

@@ -17,7 +17,7 @@ function MainLayout() {
   // example: only certain paths show sidebar
   const noSidebarPaths = ["/contact", "/about", "/products", "/what-is-app", "/analytics",
                           "/analyzer/arima-lstm", "/analyzer/forecasting-models", 
-                          "/analyzer/arima-evaluation"];
+                          "/analyzer/arima-evaluation", "/analyzer/forecasting"];
 
   return (
     <div className="wrapper">
