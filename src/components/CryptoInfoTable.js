@@ -1,7 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useCSVData } from '../context/CSVDataContext.js'; // Adjust the path if necessary
-
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import "../styles/crypto-info-table.css";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const CryptoInfoTable = () => {
     const { csvData, isLoading, error } = useCSVData();
@@ -11,11 +31,11 @@ const CryptoInfoTable = () => {
 
     const [cryptoData, setCryptoData] = useState([]);
     const [first30Close, setFirst30Close] = useState([]); // This state holds the first 30 close values of the *filtered* data
+    const [showChart, setShowChart] = useState(false);
 
     useEffect(() => {
         if (csvData) { 
             setCryptoData(csvData);
-            setFirst30Close(csvData.slice(0, 30).map((row) => ({[row.Date]: parseFloat(row.Close)})));
             setFirst30Close(csvData.slice(0, 30).map((row) => ({[row.Date]: parseFloat(row.Close)})));
         }
     }, [csvData]);
@@ -33,11 +53,38 @@ const CryptoInfoTable = () => {
         }
 
         setCryptoData(filtered);
-
         setFirst30Close(filtered.slice(0, 30).map((row) => ({[row.Date]: parseFloat(row.Close)})));
+        setShowChart(true);
 
         console.log("Filtered Data for Table:", filtered); // Log the data being displayed
         console.log("First 30 Close of Filtered Data:", first30Close); // Log the 30 close values
+    };
+
+    // Prepare chart data from filtered cryptoData
+    const chartData = {
+        labels: cryptoData.map(row => row.Date),
+        datasets: [
+            {
+                label: "Bitcoin Closing Price",
+                data: cryptoData.map(row => Number(row.Close)),
+                borderColor: "rgba(255, 206, 86, 1)",
+                backgroundColor: "rgba(255, 206, 86, 0.2)",
+                fill: true,
+                tension: 0.1,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: { display: true },
+            title: { display: true, text: "Bitcoin Closing Prices" },
+        },
+        scales: {
+            x: { title: { display: true, text: "Date" } },
+            y: { title: { display: true, text: "Close Price" } }
+        }
     };
 
     if (isLoading) {
@@ -114,15 +161,12 @@ const CryptoInfoTable = () => {
                             )}
                         </div>
                     </div>
-                     <div className="ai-description-box"> {/* This box seems separate from AI, maybe rename? */}
-                        <h2>Data Insights</h2>
-                        <p>
-                          This table displays real Bitcoin market data loaded from btc_data.csv, including Price, Close, High, Low, Open,
-                          and Volume. The table can be filtered by a date range.
-                          {/* If you want to display the first30Close data here, you can add it */}
-                          {/* Example: <p>First 30 Close Values: {JSON.stringify(first30Close)}</p> */}
-                        </p>
-                    </div>
+                    {/* Replace ai-description-box with chart */}
+                    {showChart && (
+                        <div style={{ margin: "2rem 0" }}>
+                            <Line data={chartData} options={chartOptions} />
+                        </div>
+                    )}
                 </div>
             </div>
         </>

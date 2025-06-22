@@ -1,17 +1,46 @@
 import React, { useState } from 'react';
 import '../styles/forecasting-page-content.css';
+import { Line } from 'react-chartjs-2';
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend,
+} from 'chart.js';
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	LineElement,
+	Title,
+	Tooltip,
+	Legend
+);
 
 const ForecastingPageContent = () => {
     const [showFilter, setShowFilter] = useState(false);
     const [days, setDays] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    // Dummy data for table display
-    const forecastData = [
-        { date: '2023-10-01', csv: 100, model: 110 },
-        { date: '2023-10-02', csv: 120, model: 130 },
-        { date: '2023-10-03', csv: 90, model: 95 }
-    ];
+    const originalData = [
+		{ date: '2023-04-01', value: 28000 },
+		{ date: '2023-04-10', value: 28500 },
+		{ date: '2023-04-15', value: 29000 },
+		{ date: '2023-04-20', value: 29500 },
+		{ date: '2023-04-25', value: 30000 }
+	];
+	const forecastData = [
+		{ date: '2023-04-26', value: 30500 },
+		{ date: '2023-04-27', value: 31000 },
+		{ date: '2023-04-28', value: 31200 },
+		{ date: '2023-04-29', value: 31500 },
+		{ date: '2023-04-30', value: 32000 }
+	];
 
     const handleStart = () => {
         setShowFilter(true);
@@ -24,7 +53,8 @@ const ForecastingPageContent = () => {
     };
 
     return (
-        <>
+        
+        <div>
         
         <br></br>
         <br></br>
@@ -50,18 +80,30 @@ const ForecastingPageContent = () => {
             </div>
             {/* Filter form */}
             {showFilter && !submitted && (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Number of days for forecasting:
-                        <input
-                            type="number"
-                            value={days}
-                            onChange={(e) => setDays(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
+                <div className="forecasting-filter-overlay">
+                    <div className="forecasting-filter-modal">
+                        <button
+                            className="forecasting-filter-close"
+                            onClick={() => setShowFilter(false)}
+                            aria-label="Close"
+                        >
+                            &times;
+                        </button>
+                        <h2>Predict Bitcoin Prices</h2>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="forecast-days">Number of days to predict:</label>
+                            <input
+                                id="forecast-days"
+                                type="number"
+                                value={days}
+                                onChange={(e) => setDays(e.target.value)}
+                                placeholder="Enter number of days"
+                                required
+                            />
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
             )}
             {/* Display Table and Graph once submitted */}
             {submitted && (
@@ -85,23 +127,91 @@ const ForecastingPageContent = () => {
                             ))}
                         </tbody>
                     </table>
-                    {/* Graph placeholder with updated class names */}
+                    {/* Styled graph section */}
                     <div className="forecasting-graph-container">
-                        <p>Graph:</p>
+						<div className="forecasting-graph-title">Bitcoin Price Prediction Graph</div>
+                        <ForecastChart originalData={originalData} forecastData={forecastData} />
                         <div className="forecasting-legend-item">
-                            <div className="forecasting-legend-color forecasting-csv-color"></div>
-                            <span>CSV Values</span>
-                        </div>
-                        <div className="forecasting-legend-item">
-                            <div className="forecasting-legend-color forecasting-forecast-color"></div>
-                            <span>Forecasted Values</span>
-                        </div>
+							<div className="forecasting-legend-color forecasting-csv-color"></div>
+							<span>Original Values</span>
+						</div>
+						<div className="forecasting-legend-item">
+							<div className="forecasting-legend-color forecasting-forecast-color"></div>
+							<span>Forecasted Values</span>
+						</div>
                     </div>
                 </div>
             )}
         </div>
-        </>
+        </div>
+        
     );
+};
+
+const ForecastChart = ({ originalData, forecastData }) => {
+	const labels = [...originalData.map(d => d.date), ...forecastData.map(d => d.date)];
+	const originalValues = originalData.map(d => d.value);
+	const forecastValues = [
+		...Array(originalData.length - 1).fill(null),
+		originalData[originalData.length - 1].value,
+		...forecastData.map(d => d.value)
+	];
+
+	const data = {
+		labels,
+		datasets: [
+			{
+				label: 'Original Values',
+				data: [...originalValues, null, ...Array(forecastData.length).fill(null)],
+				borderColor: '#4caf50',
+				backgroundColor: '#4caf50',
+				tension: 0.3,
+				pointRadius: 4,
+				pointBackgroundColor: '#4caf50',
+			},
+			{
+				label: 'Forecasted Values',
+				data: forecastValues,
+				borderColor: '#ff5722',
+				backgroundColor: '#ff5722',
+				borderDash: [6, 4],
+				tension: 0.3,
+				pointRadius: 4,
+				pointBackgroundColor: '#ff5722',
+			},
+		],
+	};
+
+	const options = {
+		responsive: true,
+		plugins: {
+			legend: {
+				display: false,
+			},
+			title: {
+				display: false,
+			},
+		},
+		scales: {
+			x: {
+				grid: {
+					display: false,
+				},
+			},
+			y: {
+				grid: {
+					color: '#eee',
+				},
+				beginAtZero: false,
+			},
+		},
+	};
+
+	return (
+		<div className="forecasting-chartjs-wrapper">
+			<Line data={data} options={options} />
+		</div>
+	);
 };
 
 export default ForecastingPageContent;
