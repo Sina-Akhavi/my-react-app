@@ -21,7 +21,7 @@ function AnalyticsCardsContent() {
               <h2>ARIMA Evaluation</h2>
             </div>
           </Link>
-          <Link to="#" className="card-link">
+          <Link to="/analyzer/lstm-evaluation" className="card-link">
             <div className="analytic-card">
               <i className="fas fa-brain card-icon"></i>
               <h2>LSTM Evaluation</h2>
