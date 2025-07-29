@@ -1,0 +1,83 @@
+/* Fade-in animation */
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fadeInAnimation 1s ease-in;
+}
+
+/* Card style for evaluation description */
+.evaluation-card {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* Adding an icon before the header */
+.evaluation-card h2::before {
+  content: "\1F4C8"; /* Graph icon */
+  margin-right: 8px;
+}
+
+/* Button style */
+.start-evaluation-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.start-evaluation-btn:hover {
+  background-color: #005a9e;
+}
+
+/* Table container */
+.evaluation-table-container, .evaluation-metric-container, .evaluation-chart-container {
+  background: #f9f9f9;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 400px; /* added to allow scrolling when content exceeds this height */
+  overflow-y: auto; /* enables vertical scroll bar */
+}
+
+/* Table style */
+.evaluation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.evaluation-table th,
+.evaluation-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+.evaluation-table th {
+  background-color: #0078d4;
+  color: #fff;
+  font-weight: bold;
+}
+.evaluation-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.evaluation-card p {
+  font-size: 18px;
+}
