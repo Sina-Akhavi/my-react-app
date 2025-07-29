@@ -1,0 +1,17 @@
+[
+  { "date": "2023-10-01", "actual": 111, "predicted": 110 },
+  { "date": "2023-10-02", "actual": 105, "predicted": 115 },
+  { "date": "2023-10-03", "actual": 102, "predicted": 112 },
+  { "date": "2023-10-04", "actual": 107, "predicted": 117 },
+  { "date": "2023-10-05", "actual": 110, "predicted": 120 },
+  { "date": "2023-10-06", "actual": 108, "predicted": 118 },
+  { "date": "2023-10-07", "actual": 109, "predicted": 119 },
+    { "date": "2023-10-08", "actual": 115, "predicted": 125 },
+    { "date": "2023-10-09", "actual": 120, "predicted": 130 },
+    { "date": "2023-10-10", "actual": 118, "predicted": 128 },
+    { "date": "2023-10-11", "actual": 122, "predicted": 132 },
+    { "date": "2023-10-12", "actual": 125, "predicted": 135 },
+    { "date": "2023-10-13", "actual": 130, "predicted": 140 },
+    { "date": "2023-10-14", "actual": 128, "predicted": 138 },
+    { "date": "2023-10-15", "actual": 135, "predicted": 145 }
+]
