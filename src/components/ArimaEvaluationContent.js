@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/arima-evaluation.css";
 import Footer from "./Footer";
 import ActualVsPredictedChart from "./ActualVsPredictedChart";
 
 function ForecastingModelsContent() {
   const [evaluationStarted, setEvaluationStarted] = useState(false);
+  const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch data from public/arima_results.json
+    fetch(process.env.PUBLIC_URL + "/arima_results.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setTableData(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const handleStartEvaluation = () => {
     setEvaluationStarted(true);
   };
 
-  const data = [
-    { year: "2015", actual: 5000, predicted: 5100 },
-    { year: "2016", actual: 5200, predicted: 5300 },
-    { year: "2017", actual: 5400, predicted: 5500 },
-    { year: "2018", actual: 5600, predicted: 5700 },
-    { year: "2019", actual: 5800, predicted: 5900 },
-    { year: "2020", actual: 6000, predicted: 6100 },
-    { year: "2021", actual: 6200, predicted: 6300 },
-    { year: "2022", actual: 6400, predicted: 6500 },
-    { year: "2023", actual: 6600, predicted: 6700 },
-  ];
-
-  const chartLabels = data.map((item) => item.year);
-  const actualValues = data.map((item) => item.actual);
-  const predictedValues = data.map((item) => item.predicted);
+  // Replace hardcoded data with tableData for chart
+  const chartLabels = tableData.map((item) => item.date || item.year);
+  const actualValues = tableData.map((item) => item.actual);
+  const predictedValues = tableData.map((item) => item.predicted);
 
   return (
     <>
@@ -63,37 +65,28 @@ function ForecastingModelsContent() {
         <>
           <div className="evaluation-table-container fade-in">
             <h3>Actual vs Predicted</h3>
-            <table className="evaluation-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Original</th>
-                  <th>Predicted</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2023-10-01</td>
-                  <td>100</td>
-                  <td>110</td>
-                </tr>
-                <tr>
-                  <td>2023-10-02</td>
-                  <td>105</td>
-                  <td>115</td>
-                </tr>
-                <tr>
-                  <td>2023-10-03</td>
-                  <td>102</td>
-                  <td>112</td>
-                </tr>
-                <tr>
-                  <td>2023-10-04</td>
-                  <td>107</td>
-                  <td>117</td>
-                </tr>
-              </tbody>
-            </table>
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <table className="evaluation-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Original</th>
+                    <th>Predicted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableData.map((row, idx) => (
+                    <tr key={idx}>
+                      <td>{row.date}</td>
+                      <td>{row.actual}</td>
+                      <td>{row.predicted}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
           <div className="evaluation-metric-container fade-in">
             <h3>Evaluation Metric</h3>
@@ -131,3 +124,4 @@ function ForecastingModelsContent() {
 }
 
 export default ForecastingModelsContent;
+      
