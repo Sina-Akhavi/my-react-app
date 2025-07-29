@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../styles/arima-evaluation.css";
+import "../styles/model-evaluation.css";
 import Footer from "./Footer";
 import ActualVsPredictedChart from "./ActualVsPredictedChart";
 
-function ForecastingModelsContent() {
+function ARIMAEvaluationContent() {
   const [evaluationStarted, setEvaluationStarted] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,8 +24,8 @@ function ForecastingModelsContent() {
   };
 
   // Replace hardcoded data with tableData for chart
-  const chartLabels = tableData.map((item) => item.date || item.year);
-  const actualValues = tableData.map((item) => item.actual);
+  const chartLabels = tableData.map((item) => '');
+  const actualValues = tableData.map((item) => item.expected);
   const predictedValues = tableData.map((item) => item.predicted);
 
   return (
@@ -37,21 +37,21 @@ function ForecastingModelsContent() {
       <div className="evaluation-card fade-in">
         <h2>Arima Evaluation</h2>
         <p>
-          Line 1: This evaluation section is dedicated to assessing the
+          This evaluation section is dedicated to assessing the
           performance of ARIMA models.
         </p>
         <p>
-          Line 2: It offers insights into time series forecasting techniques.
+          It offers insights into time series forecasting techniques.
         </p>
         <p>
-          Line 3: Historical data patterns are compared against predicted
+          Historical data patterns are compared against predicted
           values.
         </p>
-        <p>Line 4: The evaluation simulates real-world market conditions.</p>
-        <p>Line 5: It provides a tangible approach to model validation.</p>
-        <p>Line 6: Users can observe trends and variances in the output.</p>
+        <p>The evaluation simulates real-world market conditions.</p>
+        <p>It provides a tangible approach to model validation.</p>
+        <p>Users can observe trends and variances in the output.</p>
         <p>
-          Line 7: Interactive visuals and animations enrich the user experience.
+          Interactive visuals and animations enrich the user experience.
         </p>
         <button
           className="start-evaluation-btn"
@@ -71,7 +71,6 @@ function ForecastingModelsContent() {
               <table className="evaluation-table">
                 <thead>
                   <tr>
-                    <th>Date</th>
                     <th>Original</th>
                     <th>Predicted</th>
                   </tr>
@@ -79,8 +78,7 @@ function ForecastingModelsContent() {
                 <tbody>
                   {tableData.map((row, idx) => (
                     <tr key={idx}>
-                      <td>{row.date}</td>
-                      <td>{row.actual}</td>
+                      <td>{row.expected}</td>
                       <td>{row.predicted}</td>
                     </tr>
                   ))}
@@ -98,9 +96,9 @@ function ForecastingModelsContent() {
                   <th>MAE</th>
                 </tr>
                 <tr>
-                  <td>5.2%</td>
-                  <td>9.8</td>
-                  <td>3.4</td>
+                  <td>2.59</td>
+                  <td>364.3483</td>
+                  <td>228.06</td>
                 </tr>
               </tbody>
             </table>
@@ -123,5 +121,5 @@ function ForecastingModelsContent() {
   );
 }
 
-export default ForecastingModelsContent;
+export default ARIMAEvaluationContent;
       
