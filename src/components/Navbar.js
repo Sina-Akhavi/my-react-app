@@ -19,24 +19,12 @@ const Navbar = () => {
                     <ul className="navbar-nav">
                         <li className="nav-item dropdown">
                             <Link to="/" className="nav-link">Home</Link>
-                            <ul className="dropdown-menu">
-                                <li><Link to="/home/sub1" className="dropdown-item">Sub Home 1</Link></li>
-                                <li><Link to="/home/sub2" className="dropdown-item">Sub Home 2</Link></li>
-                            </ul>
                         </li>
                         <li className="nav-item dropdown">
                             <Link to="/about" className="nav-link">About</Link>
-                            <ul className="dropdown-menu">
-                                <li><Link to="/about/team" className="dropdown-item">Team</Link></li>
-                                <li><Link to="/about/company" className="dropdown-item">Company</Link></li>
-                            </ul>
                         </li>
                         <li className="nav-item dropdown">
                             <Link to="/contact" className="nav-link">Contact</Link>
-                            <ul className="dropdown-menu">
-                                <li><Link to="/contact/support" className="dropdown-item">Support</Link></li>
-                                <li><Link to="/contact/sales" className="dropdown-item">Sales</Link></li>
-                            </ul>
                         </li>
                         {/* Product Dropdown */}
                         <li className="nav-item dropdown">
