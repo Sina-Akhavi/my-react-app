@@ -61,16 +61,17 @@ const CryptoInfoTable = () => {
     };
 
     // Prepare chart data from filtered cryptoData
+    const reversedCryptoData = [...cryptoData].reverse();
     const chartData = {
-        labels: cryptoData.map(row => row.Date),
+        labels: reversedCryptoData.map(row => row.Date),
         datasets: [
             {
                 label: "Bitcoin Closing Price",
-                data: cryptoData.map(row => Number(row.Close)),
-                borderColor: "rgba(255, 206, 86, 1)",
+                data: reversedCryptoData.map(row => Number(row.Close)),
+                borderColor: "red",
                 backgroundColor: "rgba(255, 206, 86, 0.2)",
                 fill: true,
-                tension: 0.1,
+                tension: 0.1
             },
         ],
     };
@@ -82,8 +83,30 @@ const CryptoInfoTable = () => {
             title: { display: true, text: "Bitcoin Closing Prices" },
         },
         scales: {
-            x: { title: { display: true, text: "Date" } },
-            y: { title: { display: true, text: "Close Price" } }
+            x: { 
+                title: { 
+                    display: true, 
+                    text: "Date",
+                    color: "black",
+                    font: { weight: "bold" }
+                },
+                ticks: {
+                    color: "black",
+                    font: { weight: "bold" }
+                }
+            },
+            y: { 
+                title: { 
+                    display: true, 
+                    text: "Close Price",
+                    color: "black",
+                    font: { weight: "bold" }
+                },
+                ticks: {
+                    color: "black",
+                    font: { weight: "bold" }
+                }
+            }
         }
     };
 
