@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "../styles/sidebar.css";
 
 const Sidebar = () => {
@@ -21,7 +20,7 @@ const Sidebar = () => {
       <div className="sidebar-wrapper">
         <ul className="sidebar-list">
           <li className="sidebar-item">
-            <a className="a-item" href="#">
+            <a className="a-item" href="/">
               <i
                 className="fa fa-tachometer"
                 aria-hidden="true"
@@ -64,27 +63,27 @@ const Sidebar = () => {
             {showProductMenu && (
               <ul className="product-menu">
                 <li>
-                  <Link to="/products " className="btn">
+                  <a href="/products" className="btn">
                     bitcoin forecaster
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/products" className="btn">
+                  <a href="/products" className="btn">
                     crypto analyzer
-                  </Link>
+                  </a>
                 </li>
               </ul>
             )}
           </li>
           <li className="sidebar-item">
-            <Link className="a-item" to="/what-is-app">
+            <a className="a-item" href="/what-is-app">
               <i
                 className="fa fa-info-circle"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               About App
-            </Link>
+            </a>
           </li>
           {/* Login Button as a List Item */}
           <br></br>
