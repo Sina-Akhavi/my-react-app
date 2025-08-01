@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/forecasting-page-content.css';
 import { Line } from 'react-chartjs-2';
 import {
@@ -26,21 +26,30 @@ const ForecastingPageContent = () => {
     const [showFilter, setShowFilter] = useState(false);
     const [days, setDays] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [originalData, setOriginalData] = useState([]);
+    const [forecastData, setForecastData] = useState([]);
 
-    const originalData = [
-		{ date: '2023-04-01', value: 28000 },
-		{ date: '2023-04-10', value: 28500 },
-		{ date: '2023-04-15', value: 29000 },
-		{ date: '2023-04-20', value: 29500 },
-		{ date: '2023-04-25', value: 30000 }
-	];
-	const forecastData = [
-		{ date: '2023-04-26', value: 30500 },
-		{ date: '2023-04-27', value: 31000 },
-		{ date: '2023-04-28', value: 31200 },
-		{ date: '2023-04-29', value: 31500 },
-		{ date: '2023-04-30', value: 32000 }
-	];
+    useEffect(() => {
+        // Load originalData from btc_data.csv
+        fetch('/btc_data.csv')
+            .then(res => res.text())
+            .then(text => {
+                // Parse CSV
+                const lines = text.split('\n');
+                const header = lines[0].split(',');
+                const dateIdx = header.indexOf('Date');
+                const valueIdx = header.indexOf('Close');
+                const data = lines.slice(1)
+                    .map(line => line.split(','))
+                    .filter(cols => cols.length > Math.max(dateIdx, valueIdx))
+                    .map(cols => ({
+                        date: cols[dateIdx],
+                        value: parseFloat(cols[valueIdx])
+                    }))
+                    .filter(row => row.date >= '2019-05-01' && row.date <= '2019-05-29');
+                setOriginalData(data);
+            });
+    }, []);
 
     const handleStart = () => {
         setShowFilter(true);
@@ -48,8 +57,26 @@ const ForecastingPageContent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // ...potential data fetching logic...
-        setSubmitted(true);
+        // Load forecastData from arima_results.json using user input for days
+        fetch('/arima_results.json')
+            .then(res => res.json())
+            .then(json => {
+                const numDays = parseInt(days, 10);
+                const startDate = new Date('2019-05-30');
+                const forecast = json.slice(0, numDays).map((item, idx) => {
+                    const date = new Date(startDate);
+                    date.setDate(date.getDate() + idx);
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0');
+                    const dd = String(date.getDate()).padStart(2, '0');
+                    return {
+                        date: `${yyyy}-${mm}-${dd}`,
+                        value: item.predicted
+                    };
+                });
+                setForecastData(forecast);
+                setSubmitted(true);
+            });
     };
 
     return (
@@ -99,6 +126,7 @@ const ForecastingPageContent = () => {
                                 onChange={(e) => setDays(e.target.value)}
                                 placeholder="Enter number of days"
                                 required
+                                min={1}
                             />
                             <button type="submit">Submit</button>
                         </form>
@@ -121,15 +149,20 @@ const ForecastingPageContent = () => {
                             {forecastData.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.date}</td>
-                                    <td>{item.csv}</td>
-                                    <td>{item.model}</td>
+                                    <td>
+                                        {
+                                            // Find original value for this date if exists
+                                            originalData.find(d => d.date === item.date)?.value || ''
+                                        }
+                                    </td>
+                                    <td>{item.value}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                     {/* Styled graph section */}
                     <div className="forecasting-graph-container">
-						<div className="forecasting-graph-title">Bitcoin Price Prediction Graph</div>
+                        <div className="forecasting-graph-title">Bitcoin Price Prediction Graph</div>
                         <ForecastChart originalData={originalData} forecastData={forecastData} />
                         <div className="forecasting-legend-item">
 							<div className="forecasting-legend-color forecasting-csv-color"></div>
@@ -149,69 +182,75 @@ const ForecastingPageContent = () => {
 };
 
 const ForecastChart = ({ originalData, forecastData }) => {
-	const labels = [...originalData.map(d => d.date), ...forecastData.map(d => d.date)];
-	const originalValues = originalData.map(d => d.value);
-	const forecastValues = [
-		...Array(originalData.length - 1).fill(null),
-		originalData[originalData.length - 1].value,
-		...forecastData.map(d => d.value)
-	];
+    // If no data, render nothing
+    if (!originalData.length || !forecastData.length) return null;
 
-	const data = {
-		labels,
-		datasets: [
-			{
-				label: 'Original Values',
-				data: [...originalValues, null, ...Array(forecastData.length).fill(null)],
-				borderColor: '#4caf50',
-				backgroundColor: '#4caf50',
-				tension: 0.3,
-				pointRadius: 4,
-				pointBackgroundColor: '#4caf50',
-			},
-			{
-				label: 'Forecasted Values',
-				data: forecastValues,
-				borderColor: '#ff5722',
-				backgroundColor: '#ff5722',
-				borderDash: [6, 4],
-				tension: 0.3,
-				pointRadius: 4,
-				pointBackgroundColor: '#ff5722',
-			},
-		],
-	};
+    const labels = [
+        ...originalData.map(d => d.date),
+        ...forecastData.map(d => d.date)
+    ];
+    const originalValues = originalData.map(d => d.value);
+    const forecastValues = [
+        ...Array(originalData.length - 1).fill(null),
+        originalData[originalData.length - 1].value,
+        ...forecastData.map(d => d.value)
+    ];
 
-	const options = {
-		responsive: true,
-		plugins: {
-			legend: {
-				display: false,
-			},
-			title: {
-				display: false,
-			},
-		},
-		scales: {
-			x: {
-				grid: {
-					display: false,
-				},
-			},
-			y: {
-				grid: {
-					color: '#eee',
-				},
-				beginAtZero: false,
-			},
-		},
-	};
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Original Values',
+                data: [...originalValues, null, ...Array(forecastData.length).fill(null)],
+                borderColor: '#4caf50',
+                backgroundColor: '#4caf50',
+                tension: 0.3,
+                pointRadius: 4,
+                pointBackgroundColor: '#4caf50',
+            },
+            {
+                label: 'Forecasted Values',
+                data: forecastValues,
+                borderColor: '#ff5722',
+                backgroundColor: '#ff5722',
+                borderDash: [6, 4],
+                tension: 0.3,
+                pointRadius: 4,
+                pointBackgroundColor: '#ff5722',
+            },
+        ],
+    };
 
-	return (
-		<div className="forecasting-chartjs-wrapper">
-			<Line data={data} options={options} />
-		</div>
-	);
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            title: {
+                display: false,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+            },
+            y: {
+                grid: {
+                    color: '#eee',
+                },
+                beginAtZero: false,
+            },
+        },
+    };
+
+    return (
+        <div className="forecasting-chartjs-wrapper">
+            <Line data={data} options={options} />
+        </div>
+    );
 };
 
 export default ForecastingPageContent;
