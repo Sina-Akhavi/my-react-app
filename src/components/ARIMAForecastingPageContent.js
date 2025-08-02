@@ -22,12 +22,13 @@ ChartJS.register(
 	Legend
 );
 
-const ForecastingPageContent = () => {
+const ARIMAForecastingPageContent = () => {
     const [showFilter, setShowFilter] = useState(false);
     const [days, setDays] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [originalData, setOriginalData] = useState([]);
     const [forecastData, setForecastData] = useState([]);
+    const [forecastRaw, setForecastRaw] = useState([]);
 
     useEffect(() => {
         // Load originalData from btc_data.csv
@@ -55,28 +56,26 @@ const ForecastingPageContent = () => {
         setShowFilter(true);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Load forecastData from arima_results.json using user input for days
-        fetch('/arima_results.json')
-            .then(res => res.json())
-            .then(json => {
-                const numDays = parseInt(days, 10);
-                const startDate = new Date('2019-05-30');
-                const forecast = json.slice(0, numDays).map((item, idx) => {
-                    const date = new Date(startDate);
-                    date.setDate(date.getDate() + idx);
-                    const yyyy = date.getFullYear();
-                    const mm = String(date.getMonth() + 1).padStart(2, '0');
-                    const dd = String(date.getDate()).padStart(2, '0');
-                    return {
-                        date: `${yyyy}-${mm}-${dd}`,
-                        value: item.predicted
-                    };
-                });
-                setForecastData(forecast);
-                setSubmitted(true);
-            });
+        const numDays = parseInt(days, 10);
+
+        // Fetch forecastData from API
+        const apiUrl = `http://127.0.0.1:8000/api/model-forecast/arima/?forecast_days=${numDays}`;
+        const apiRes = await fetch(apiUrl);
+        const apiJson = await apiRes.json();
+
+        // Save raw response for table
+        setForecastRaw(apiJson);
+
+        // forecastData: use Predicted values, label dates as Day 1, Day 2, ...
+        const forecast = apiJson.map((item) => ({
+            date: `Day ${item.index}`,
+            value: parseFloat(item.Predicted)
+        }));
+
+        setForecastData(forecast);
+        setSubmitted(true);
     };
 
     return (
@@ -146,16 +145,11 @@ const ForecastingPageContent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {forecastData.map((item, index) => (
+                            {forecastRaw.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item.date}</td>
-                                    <td>
-                                        {
-                                            // Find original value for this date if exists
-                                            originalData.find(d => d.date === item.date)?.value || ''
-                                        }
-                                    </td>
-                                    <td>{item.value}</td>
+                                    <td>{`Day ${item.index}`}</td>
+                                    <td>{item.Actual}</td>
+                                    <td>{item.Predicted}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -163,10 +157,18 @@ const ForecastingPageContent = () => {
                     {/* Styled graph section */}
                     <div className="forecasting-graph-container">
                         <div className="forecasting-graph-title">Bitcoin Price Prediction Graph</div>
-                        <ForecastChart originalData={originalData} forecastData={forecastData} />
+                        <ForecastChart
+                            originalData={originalData}
+                            forecastData={forecastData}
+                            forecastRaw={forecastRaw}
+                        />
                         <div className="forecasting-legend-item">
 							<div className="forecasting-legend-color forecasting-csv-color"></div>
 							<span>Original Values</span>
+						</div>
+						<div className="forecasting-legend-item">
+							<div className="forecasting-legend-color forecasting-actual-color"></div>
+							<span>Actual Values</span>
 						</div>
 						<div className="forecasting-legend-item">
 							<div className="forecasting-legend-color forecasting-forecast-color"></div>
@@ -181,19 +183,27 @@ const ForecastingPageContent = () => {
     );
 };
 
-const ForecastChart = ({ originalData, forecastData }) => {
+const ForecastChart = ({ originalData, forecastData, forecastRaw }) => {
     // If no data, render nothing
-    if (!originalData.length || !forecastData.length) return null;
+    if (!originalData.length || !forecastData.length || !forecastRaw.length) return null;
 
     const labels = [
         ...originalData.map(d => d.date),
         ...forecastData.map(d => d.date)
     ];
+
     const originalValues = originalData.map(d => d.value);
+
+    // Actual values from forecastRaw
+    const actualValues = [
+        ...Array(originalData.length).fill(null),
+        ...forecastRaw.map(item => parseFloat(item.Actual))
+    ];
+
+    // Forecasted values
     const forecastValues = [
-        ...Array(originalData.length - 1).fill(null),
-        originalData[originalData.length - 1].value,
-        ...forecastData.map(d => d.value)
+        ...Array(originalData.length).fill(null),
+        ...forecastRaw.map(item => parseFloat(item.Predicted))
     ];
 
     const data = {
@@ -201,12 +211,22 @@ const ForecastChart = ({ originalData, forecastData }) => {
         datasets: [
             {
                 label: 'Original Values',
-                data: [...originalValues, null, ...Array(forecastData.length).fill(null)],
+                data: [...originalValues, ...Array(forecastData.length).fill(null)],
                 borderColor: '#4caf50',
                 backgroundColor: '#4caf50',
                 tension: 0.3,
                 pointRadius: 4,
                 pointBackgroundColor: '#4caf50',
+            },
+            {
+                label: 'Actual Values',
+                data: actualValues,
+                borderColor: '#2196f3',
+                backgroundColor: '#2196f3',
+                borderDash: [2, 2],
+                tension: 0.3,
+                pointRadius: 4,
+                pointBackgroundColor: '#2196f3',
             },
             {
                 label: 'Forecasted Values',
@@ -253,4 +273,4 @@ const ForecastChart = ({ originalData, forecastData }) => {
     );
 };
 
-export default ForecastingPageContent;
+export default ARIMAForecastingPageContent;

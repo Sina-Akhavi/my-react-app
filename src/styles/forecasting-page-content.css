@@ -150,6 +150,11 @@ table tr:hover td {
   background-color: #4caf50;
 }
 
+/* CSV legend color */
+.forecasting-actual-color {
+  background-color: blue;
+}
+
 /* Forecasted values legend color */
 .forecasting-forecast-color {
   background-color: #ff5722;

@@ -21,7 +21,8 @@ import AnalyticsCardsContent from './components/AnalyticsCardsContent.js';
 import ARIMALSTMComparisonContent from './components/ArimaLstmComparisonContent.js'
 import ForecastingModelsContent from './components/ForecastingModelsContent.js'
 import ArimaEvaluationContent from './components/ArimaEvaluationContent.js'
-import ForecastingPageContent from './components/ForecastingPageContent.js'
+import ARIMAForecastingPageContent from './components/ARIMAForecastingPageContent.js'
+import LSTMForecastingPageContent from './components/LSTMForecastingPageContent.js'
 import LSTMEvaluationContent from './components/LSTMEvaluationContent.js';
 
 
@@ -49,7 +50,8 @@ const App = () => {
                             <Route path='/analyzer/forecasting-models' element={<ForecastingModelsContent/>}/>
                             <Route path='/analyzer/arima-evaluation' element={<ArimaEvaluationContent/>}/>
                             <Route path='/analyzer/lstm-evaluation' element={<LSTMEvaluationContent/>}/>
-                            <Route path='/analyzer/forecasting' element={<ForecastingPageContent/>}/>
+                            <Route path='/analyzer/arima-forecasting' element={<ARIMAForecastingPageContent/>}/>
+                            <Route path='/analyzer/lstm-forecasting' element={<LSTMForecastingPageContent/>}/>
                         </Route>
                     </Routes>
                 </CSVDataProvider>

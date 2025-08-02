@@ -29,13 +29,13 @@ function AnalyticsCardsContent() {
           </Link>
         </div>
         <div className="cards-row">
-          <Link to="/analyzer/forecasting" className="card-link">
+          <Link to="/analyzer/arima-forecasting" className="card-link">
             <div className="analytic-card">
               <i className="far fa-chart-bar card-icon"></i>
               <h2>ARIMA Forecasting</h2>
             </div>
           </Link>
-          <Link to="#" className="card-link">
+          <Link to="/analyzer/lstm-forecasting" className="card-link">
             <div className="analytic-card">
               <i className="fas fa-chart-bar card-icon"></i>
               <h2>LSTM Forecasting</h2>
