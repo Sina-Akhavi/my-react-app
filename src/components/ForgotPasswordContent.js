@@ -1,66 +1,86 @@
-import React, { useState } from 'react';
+// src/pages/ForgotPasswordPage.jsx
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/forgot-password.css';
 
-const ForgotPasswordContent = () => {
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
+export default function ForgotPasswordPage() {
+  const { requestPasswordReset, user } = useAuth();
+  const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setEmail(e.target.value);
-    };
+  // If already logged in, redirect to home/dashboard
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setMessage('');
-        setError('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-        if (!email) {
-            setError('Please enter your email address.');
-            return;
-        }
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError('');
+    setMessage('');
 
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/auth/password/reset/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setMessage('A password reset email has been sent. Please check your inbox.');
-            } else {
-                setError(data.message || 'Failed to reset password. Please try again.');
-            }
-        } catch (err) {
-            setError('An unexpected error occurred. Please try again later.');
-        }
-    };
+    if (!email) {
+      setError('Please enter your email address.');
+      return;
+    }
 
-    return (
-        <div className="forgot-password-container">
-            <div className="forgot-password-form">
-                <h2>Forgot Password</h2>
-                {message && <p className="success-message">{message}</p>}
-                {error && <p className="error-message">{error}</p>}
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="email">Enter your email address:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="forgot-password-btn">Reset Password</button>
-                </form>
-            </div>
-        </div>
-    );
-};
+    setLoading(true);
+    try {
+      // call the context method instead of raw fetch
+      await requestPasswordReset(email);
+      setMessage(
+        'A password reset email has been sent. Please check your inbox.'
+      );
+    } catch (err) {
+      // DRF default error format is { detail: "…" }
+      const msg = err.response?.data?.detail ||
+                  'Failed to send reset email. Please try again.';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-export default ForgotPasswordContent;
+  return (
+    <div className="forgot-password-container">
+      <div className="forgot-password-form">
+        <h2>Forgot Password</h2>
+
+        {message && <p className="success-message">{message}</p>}
+        {error && <p className="error-message">{error}</p>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Enter your email address:</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              disabled={loading}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="forgot-password-btn"
+            disabled={loading}
+          >
+            {loading ? 'Sending…' : 'Reset Password'}
+          </button>
+        </form>
+
+        <p className="register-link">
+          Remembered your password? <Link to="/login">Login here</Link>
+        </p>
+      </div>
+    </div>
+  );
+}

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';   // <-- your context hook
 import '../styles/login.css';
+import { Link } from 'react-router-dom'
+
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -56,10 +58,10 @@ function LoginPage() {
           </button>
         </form>
         <p className="forgot-password">
-          <a href="/forgot-password">Forgot your password?</a>
+          <Link to="/forgot-password">Forgot your password?</Link>
         </p>
         <p className="register-link">
-          Don't have an account? <a href="/register">Register here</a>
+          Don't have an account? <Link to="/register">Register here</Link>
         </p>
       </div>
     </div>
