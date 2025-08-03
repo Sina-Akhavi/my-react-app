@@ -1,78 +1,67 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import api from '../services/api';
 
-const AuthContext = createContext(null);
-export function useAuth() {
-  return useContext(AuthContext);
-}
+const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [accessToken, setAccessToken] = useState(null);
-  const [loading, setLoading] = useState(true);
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
 
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    // On mount, decode token and set user if valid
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                if (decoded.exp * 1000 > Date.now()) {
+                    setUser(decoded);
+                } else {
+                    setUser(null);
+                }
+            } catch {
+                setUser(null);
+            }
+        }
+    }, []);
 
-  // Attempt to “bootstrap” an access token on page load
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch(
-          "http://127.0.0.1:8000/api/auth/refresh/token/",
-          {
-            method: "POST",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({}),
-          }
-        );
-        if (!res.ok) throw new Error("no refresh");
-        const data = await res.json();
-        setAccessToken(data.access);
-      } catch {
-        // not logged in
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+    const login = async (username, password) => {
+        const res = await api.post('login/', { username, password });
+        localStorage.setItem('access_token', res.data.access);
+        localStorage.setItem('refresh_token', res.data.refresh);
+        const decoded = jwtDecode(res.data.access);
+        setUser(decoded);
+    };
 
-  async function login(username, password) {
-    const res = await fetch("http://127.0.0.1:8000/api/auth/login/", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.detail || "Login failed");
-    }
-    const { access } = await res.json();
-    setAccessToken(access);
-  }
+    const logout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        setUser(null);
+    };
 
-  // --- logout
-  async function logout() {
-    setAccessToken(null);
-    setIsLogoutModalOpen(false);
-  }
+    const register = async (username, email, password) => {
+        return api.post('register/', { username, email, password });
+    };
 
-  // --- modal controls
-  const openLogoutModal = () => setIsLogoutModalOpen(true);
-  const closeLogoutModal = () => setIsLogoutModalOpen(false);
+    const requestPasswordReset = async (email) => {
+        return api.post('password-reset-request/', { email });
+    };
 
-  const value = {
-    accessToken,
-    login,
-    logout,
-    // logout-modal API:
-    isLogoutModalOpen,
-    openLogoutModal,
-    closeLogoutModal,
-  };
+    const confirmPasswordReset = async ({ uid, token, new_password }) => {
+        return api.post('password-reset-confirm/', { uid, token, new_password });
+    };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {loading ? <div>Loading auth…</div> : children}
-    </AuthContext.Provider>
-  );
-}
+    return (
+        <AuthContext.Provider value={{
+            user,
+            login,
+            logout,
+            register,
+            requestPasswordReset,
+            confirmPasswordReset
+        }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => useContext(AuthContext);
