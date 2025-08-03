@@ -24,6 +24,7 @@ import ArimaEvaluationContent from './components/ArimaEvaluationContent.js'
 import ARIMAForecastingPageContent from './components/ARIMAForecastingPageContent.js'
 import LSTMForecastingPageContent from './components/LSTMForecastingPageContent.js'
 import LSTMEvaluationContent from './components/LSTMEvaluationContent.js';
+import ProtectedRoute from './components/ProtectedRoute.js';
 
 
 const App = () => {
@@ -32,26 +33,84 @@ const App = () => {
             <AuthProvider>
                 <CSVDataProvider>
                     <Routes>
+                        {/* Public routes */}
                         <Route path='/login' element={<LoginPage/>} />
-                        <Route path='/profile' element={<ProfileContent/>} />
+                        <Route path='/profile' element={
+                            <ProtectedRoute>
+                                <ProfileContent/>
+                            </ProtectedRoute>
+                        } />
                         <Route path='/reset-password' element={<ResetPasswordContent/>} />
                         <Route path='/forgot-password' element={<ForgotPasswordContent/>} />
                         <Route path='/register' element={<RegisterPage/>} />
+                        {/* Private routes */}
                         <Route path='/' element={<MainLayout/>}>
                             <Route index element={<HomePageContent/>} />
-                            <Route path='/contact' element={<ContactContent/>}/>
-                            <Route path='/about' element={<AboutContent/>}/>
-                            <Route path='/what-is-app' element={<WhatIsAppContent/>}/>
-                            <Route path='/team-leadership' element={<TeamAndLeadership/>}/>
-                            <Route path='/products' element={<ProductContent/>}/>
-                            <Route path='/bitcoin-table' element={<CryptoInfoTable/>}/>
-                            <Route path='/analytics' element={<AnalyticsCardsContent/>}/>
-                            <Route path='/analyzer/arima-lstm' element={<ARIMALSTMComparisonContent/>}/>
-                            <Route path='/analyzer/forecasting-models' element={<ForecastingModelsContent/>}/>
-                            <Route path='/analyzer/arima-evaluation' element={<ArimaEvaluationContent/>}/>
-                            <Route path='/analyzer/lstm-evaluation' element={<LSTMEvaluationContent/>}/>
-                            <Route path='/analyzer/arima-forecasting' element={<ARIMAForecastingPageContent/>}/>
-                            <Route path='/analyzer/lstm-forecasting' element={<LSTMForecastingPageContent/>}/>
+                            <Route path='/contact' element={
+                                <ProtectedRoute>
+                                    <ContactContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/about' element={
+                                <ProtectedRoute>
+                                    <AboutContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/what-is-app' element={
+                                <ProtectedRoute>
+                                    <WhatIsAppContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/team-leadership' element={
+                                <ProtectedRoute>
+                                    <TeamAndLeadership/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/products' element={
+                                <ProtectedRoute>
+                                    <ProductContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/bitcoin-table' element={
+                                <ProtectedRoute>
+                                    <CryptoInfoTable/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analytics' element={
+                                <ProtectedRoute>
+                                    <AnalyticsCardsContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/arima-lstm' element={
+                                <ProtectedRoute>
+                                    <ARIMALSTMComparisonContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/forecasting-models' element={
+                                <ProtectedRoute>
+                                    <ForecastingModelsContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/arima-evaluation' element={
+                                <ProtectedRoute>
+                                    <ArimaEvaluationContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/lstm-evaluation' element={
+                                <ProtectedRoute>
+                                    <LSTMEvaluationContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/arima-forecasting' element={
+                                <ProtectedRoute>
+                                    <ARIMAForecastingPageContent/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/analyzer/lstm-forecasting' element={
+                                <ProtectedRoute>
+                                    <LSTMForecastingPageContent/>
+                                </ProtectedRoute>
+                            }/>
                         </Route>
                     </Routes>
                 </CSVDataProvider>

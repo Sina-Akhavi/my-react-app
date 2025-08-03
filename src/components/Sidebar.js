@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import "../styles/sidebar.css";
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const [showProductMenu, setShowProductMenu] = useState(false);
@@ -20,38 +21,38 @@ const Sidebar = () => {
       <div className="sidebar-wrapper">
         <ul className="sidebar-list">
           <li className="sidebar-item">
-            <a className="a-item" href="/">
+            <Link className="a-item" to="/">
               <i
                 className="fa fa-tachometer"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               Dashboard
-            </a>
+            </Link>
           </li>
           <li className="sidebar-item">
-            <a className="a-item" href="/bitcoin-table">
+            <Link className="a-item" to="/bitcoin-table">
               <i
                 className="fa fa-bar-chart"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               Reports
-            </a>
+            </Link>
           </li>
           <li className="sidebar-item">
-            <a className="a-item" href="/analytics">
+            <Link className="a-item" to="/analytics">
               <i
                 className="fa fa-line-chart"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               Analytics
-            </a>
+            </Link>
           </li>
           {/* Product Link with Dropdown */}
           <li className="sidebar-item">
-            <a href="#" className="a-item"
+            <Link to="#" className="a-item"
               onClick={(e) => {
                 e.preventDefault();
                 toggleProductMenu();
@@ -59,45 +60,45 @@ const Sidebar = () => {
             >
              <i className="fa fa-product-hunt" aria-hidden="true"></i>
               Product
-            </a>
+            </Link>
             {showProductMenu && (
               <ul className="product-menu">
                 <li>
-                  <a href="/products" className="btn">
+                  <Link to="/products" className="btn">
                     bitcoin forecaster
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/products" className="btn">
+                  <Link to="/products" className="btn">
                     crypto analyzer
-                  </a>
+                  </Link>
                 </li>
               </ul>
             )}
           </li>
           <li className="sidebar-item">
-            <a className="a-item" href="/what-is-app">
+            <Link className="a-item" to="/what-is-app">
               <i
                 className="fa fa-info-circle"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               About App
-            </a>
+            </Link>
           </li>
           {/* Login Button as a List Item */}
           <br></br>
           <br></br>
           <br></br>
           <li className="sidebar-item login-item">
-            <a href="/login" className="btn btn-primary login-button">
+            <Link to="/login" className="btn btn-primary login-button">
               <i
                 className="fa fa-sign-in"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
-              Login
-            </a>
+              Logout
+            </Link>
           </li>
         </ul>
       </div>
