@@ -35,9 +35,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        console.log("Hi LOG OUT!!");
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         setUser(null);
+        closeLogoutModal(); // close modal after logout
     };
 
     const register = async (username, email, password) => {
@@ -52,6 +54,11 @@ export const AuthProvider = ({ children }) => {
         return api.post('password-reset-confirm/', { uid, token, new_password });
     };
 
+    // Modal state for logout
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    const openLogoutModal = () => setIsLogoutModalOpen(true);
+    const closeLogoutModal = () => setIsLogoutModalOpen(false);
+
     return (
         <AuthContext.Provider value={{
             user,
@@ -59,7 +66,10 @@ export const AuthProvider = ({ children }) => {
             logout,
             register,
             requestPasswordReset,
-            confirmPasswordReset
+            confirmPasswordReset,
+            isLogoutModalOpen,
+            openLogoutModal,
+            closeLogoutModal
         }}>
             {children}
         </AuthContext.Provider>

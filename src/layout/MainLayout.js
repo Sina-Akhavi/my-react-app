@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar   from "../components/Sidebar";
 import MainPanel from "../components/MainPanel";
 import Modal     from "../components/ModalComponent";
@@ -7,12 +7,21 @@ import { useAuth } from "../context/AuthContext";
 
 function MainLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
   const {
     isLogoutModalOpen,
     openLogoutModal,
     closeLogoutModal,
-    logout
+    logout,
+    user
   } = useAuth();
+
+  // Redirect to login after logout
+  useEffect(() => {
+    if (user === null) {
+      navigate('/login', { replace: true });
+    }
+  }, [user, navigate]);
 
   // example: only certain paths show sidebar
   const noSidebarPaths = ["/contact", "/about", "/products", "/what-is-app", "/analytics",
