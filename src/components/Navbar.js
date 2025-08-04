@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-    const [username, setUsername] = useState('');
-
-    useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
-        if (storedUsername) {
-            setUsername(storedUsername);
-        }
-    }, []);
+    const { user, username } = useAuth();
+    console.log('user:', user);
+    
 
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-transparent">
