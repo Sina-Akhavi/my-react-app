@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [username, setUserName] = useState(null);
 
     // On mount, decode token and set user if valid
     useEffect(() => {
@@ -29,9 +30,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
         const decoded = jwtDecode(res.data.access);
-        console.log("res.data:", res.data);
-        
         setUser(decoded);
+        setUserName(res.data.username);
     };
 
     const logout = () => {
@@ -47,11 +47,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     const requestPasswordReset = async (email) => {
-        return api.post('password-reset-request/', { email });
+        return api.post('password/reset/', { email });
     };
 
     const confirmPasswordReset = async ({ uid, token, new_password }) => {
-        return api.post('password-reset-confirm/', { uid, token, new_password });
+        return api.post('password/confirmation/', { uid, token, new_password });
     };
 
     // Modal state for logout
@@ -61,6 +61,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{
+            username,
             user,
             login,
             logout,
