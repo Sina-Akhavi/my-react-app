@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../styles/sidebar.css";
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ onLogoutClick }) => {
   const [showProductMenu, setShowProductMenu] = useState(false);
 
   const toggleProductMenu = () => {
@@ -91,14 +91,17 @@ const Sidebar = () => {
           <br></br>
           <br></br>
           <li className="sidebar-item login-item">
-            <Link to="/login" className="btn btn-primary login-button">
+            <button
+              className="btn btn-primary login-button"
+              onClick={onLogoutClick}
+            >
               <i
                 className="fa fa-sign-in"
                 aria-hidden="true"
                 style={{ marginRight: "8px" }}
               ></i>
               Logout
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
