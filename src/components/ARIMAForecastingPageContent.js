@@ -11,6 +11,7 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
+import api from '../services/api';
 
 ChartJS.register(
 	CategoryScale,
@@ -60,10 +61,10 @@ const ARIMAForecastingPageContent = () => {
         e.preventDefault();
         const numDays = parseInt(days, 10);
 
-        // Fetch forecastData from API
-        const apiUrl = `http://127.0.0.1:8000/api/model-forecast/arima/?forecast_days=${numDays}`;
-        const apiRes = await fetch(apiUrl);
-        const apiJson = await apiRes.json();
+        // Fetch forecastData from API using axios service
+        const apiUrl = `model-forecast/arima/?forecast_days=${numDays}`;
+        const apiRes = await api.get(apiUrl);
+        const apiJson = apiRes.data;
 
         // Save raw response for table
         setForecastRaw(apiJson);

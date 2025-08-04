@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [username, setUserName] = useState(null);
 
-    // On mount, decode token and set user if valid
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
@@ -26,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (username, password) => {
-        const res = await api.post('login/', { username, password });
+        const res = await api.post('auth/login/', { username, password });
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
         const decoded = jwtDecode(res.data.access);
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        console.log("Hi LOG OUT!!");
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         setUser(null);
@@ -43,18 +41,17 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (username, email, password) => {
-        return api.post('register/', { username, email, password });
+        return api.post('auth/register/', { username, email, password });
     };
 
     const requestPasswordReset = async (email) => {
-        return api.post('password/reset/', { email });
+        return api.post('auth/password/reset/', { email });
     };
 
     const confirmPasswordReset = async ({ uid, token, new_password }) => {
-        return api.post('password/confirmation/', { uid, token, new_password });
+        return api.post('auth/password/confirmation/', { uid, token, new_password });
     };
 
-    // Modal state for logout
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const openLogoutModal = () => setIsLogoutModalOpen(true);
     const closeLogoutModal = () => setIsLogoutModalOpen(false);
