@@ -97,8 +97,8 @@ function ARIMAEvaluationContent() {
                 </tr>
                 <tr>
                   <td>2.59</td>
-                  <td>364.3483</td>
-                  <td>228.06</td>
+                  <td>364</td>
+                  <td>228</td>
                 </tr>
               </tbody>
             </table>

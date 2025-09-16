@@ -95,9 +95,9 @@ function LSTMEvaluationContent() {
                   <th>MAE</th>
                 </tr>
                 <tr>
-                  <td>33.31</td>
-                  <td>350.344</td>
-                  <td>242.471</td>
+                  <td>3.86</td>
+                  <td>456</td>
+                  <td>335</td>
                 </tr>
               </tbody>
             </table>
